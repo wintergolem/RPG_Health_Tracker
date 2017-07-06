@@ -13,6 +13,10 @@
 		35B3AFEB1F0DB46600C695C9 /* RPG_Health_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 35B3AFE91F0DB46600C695C9 /* RPG_Health_Tracker.xcdatamodeld */; };
 		35B3AFED1F0DB46600C695C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B3AFEC1F0DB46600C695C9 /* Assets.xcassets */; };
 		35B3AFF01F0DB46600C695C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35B3AFEE1F0DB46600C695C9 /* LaunchScreen.storyboard */; };
+		35B3AFFD1F0DB64E00C695C9 /* HealthTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3AFFC1F0DB64E00C695C9 /* HealthTrack.swift */; };
+		35B3B0001F0DB76300C695C9 /* HealthResistenced20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3AFFF1F0DB76300C695C9 /* HealthResistenced20.swift */; };
+		35B3B0031F0DB79E00C695C9 /* d20ConstantStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3B0021F0DB79E00C695C9 /* d20ConstantStrings.swift */; };
+		35B3B0061F0DB89D00C695C9 /* Damaged20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3B0051F0DB89D00C695C9 /* Damaged20.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		35B3AFEC1F0DB46600C695C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35B3AFEF1F0DB46600C695C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35B3AFF11F0DB46600C695C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35B3AFFC1F0DB64E00C695C9 /* HealthTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthTrack.swift; sourceTree = "<group>"; };
+		35B3AFFF1F0DB76300C695C9 /* HealthResistenced20.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthResistenced20.swift; sourceTree = "<group>"; };
+		35B3B0021F0DB79E00C695C9 /* d20ConstantStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = d20ConstantStrings.swift; sourceTree = "<group>"; };
+		35B3B0051F0DB89D00C695C9 /* Damaged20.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Damaged20.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,67 @@
 		35B3AFE11F0DB46600C695C9 /* RPG_Health_Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				35B3AFE21F0DB46600C695C9 /* AppDelegate.swift */,
-				35B3AFE41F0DB46600C695C9 /* ViewController.swift */,
-				35B3AFE61F0DB46600C695C9 /* Main.storyboard */,
-				35B3AFEC1F0DB46600C695C9 /* Assets.xcassets */,
-				35B3AFEE1F0DB46600C695C9 /* LaunchScreen.storyboard */,
-				35B3AFF11F0DB46600C695C9 /* Info.plist */,
-				35B3AFE91F0DB46600C695C9 /* RPG_Health_Tracker.xcdatamodeld */,
+				35B3B0011F0DB78100C695C9 /* Enum */,
+				35B3AFFE1F0DB6C300C695C9 /* Strings */,
+				35B3AFFB1F0DB4F100C695C9 /* CoreData */,
+				35B3AFFA1F0DB4D800C695C9 /* UI */,
+				35B3AFF91F0DB4B100C695C9 /* Class */,
+				35B3AFF71F0DB49600C695C9 /* Low-Level */,
 			);
 			path = RPG_Health_Tracker;
+			sourceTree = "<group>";
+		};
+		35B3AFF71F0DB49600C695C9 /* Low-Level */ = {
+			isa = PBXGroup;
+			children = (
+				35B3AFE21F0DB46600C695C9 /* AppDelegate.swift */,
+				35B3AFF11F0DB46600C695C9 /* Info.plist */,
+				35B3AFEC1F0DB46600C695C9 /* Assets.xcassets */,
+			);
+			name = "Low-Level";
+			sourceTree = "<group>";
+		};
+		35B3AFF91F0DB4B100C695C9 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				35B3AFFC1F0DB64E00C695C9 /* HealthTrack.swift */,
+				35B3AFFF1F0DB76300C695C9 /* HealthResistenced20.swift */,
+				35B3B0051F0DB89D00C695C9 /* Damaged20.swift */,
+			);
+			name = Class;
+			sourceTree = "<group>";
+		};
+		35B3AFFA1F0DB4D800C695C9 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				35B3AFEE1F0DB46600C695C9 /* LaunchScreen.storyboard */,
+				35B3AFE61F0DB46600C695C9 /* Main.storyboard */,
+				35B3AFE41F0DB46600C695C9 /* ViewController.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		35B3AFFB1F0DB4F100C695C9 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				35B3AFE91F0DB46600C695C9 /* RPG_Health_Tracker.xcdatamodeld */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		35B3AFFE1F0DB6C300C695C9 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				35B3B0021F0DB79E00C695C9 /* d20ConstantStrings.swift */,
+			);
+			name = Strings;
+			sourceTree = "<group>";
+		};
+		35B3B0011F0DB78100C695C9 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,9 +200,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B3B0001F0DB76300C695C9 /* HealthResistenced20.swift in Sources */,
 				35B3AFE51F0DB46600C695C9 /* ViewController.swift in Sources */,
 				35B3AFE31F0DB46600C695C9 /* AppDelegate.swift in Sources */,
 				35B3AFEB1F0DB46600C695C9 /* RPG_Health_Tracker.xcdatamodeld in Sources */,
+				35B3AFFD1F0DB64E00C695C9 /* HealthTrack.swift in Sources */,
+				35B3B0031F0DB79E00C695C9 /* d20ConstantStrings.swift in Sources */,
+				35B3B0061F0DB89D00C695C9 /* Damaged20.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
