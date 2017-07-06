@@ -17,6 +17,7 @@
 		35B3B0001F0DB76300C695C9 /* HealthResistenced20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3AFFF1F0DB76300C695C9 /* HealthResistenced20.swift */; };
 		35B3B0031F0DB79E00C695C9 /* d20ConstantStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3B0021F0DB79E00C695C9 /* d20ConstantStrings.swift */; };
 		35B3B0061F0DB89D00C695C9 /* Damaged20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3B0051F0DB89D00C695C9 /* Damaged20.swift */; };
+		35B3B0081F0DCFAE00C695C9 /* DamageTyped20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3B0071F0DCFAE00C695C9 /* DamageTyped20.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		35B3AFFF1F0DB76300C695C9 /* HealthResistenced20.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthResistenced20.swift; sourceTree = "<group>"; };
 		35B3B0021F0DB79E00C695C9 /* d20ConstantStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = d20ConstantStrings.swift; sourceTree = "<group>"; };
 		35B3B0051F0DB89D00C695C9 /* Damaged20.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Damaged20.swift; sourceTree = "<group>"; };
+		35B3B0071F0DCFAE00C695C9 /* DamageTyped20.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DamageTyped20.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				35B3AFFC1F0DB64E00C695C9 /* HealthTrack.swift */,
 				35B3AFFF1F0DB76300C695C9 /* HealthResistenced20.swift */,
 				35B3B0051F0DB89D00C695C9 /* Damaged20.swift */,
+				35B3B0071F0DCFAE00C695C9 /* DamageTyped20.swift */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				35B3AFE31F0DB46600C695C9 /* AppDelegate.swift in Sources */,
 				35B3AFEB1F0DB46600C695C9 /* RPG_Health_Tracker.xcdatamodeld in Sources */,
 				35B3AFFD1F0DB64E00C695C9 /* HealthTrack.swift in Sources */,
+				35B3B0081F0DCFAE00C695C9 /* DamageTyped20.swift in Sources */,
 				35B3B0031F0DB79E00C695C9 /* d20ConstantStrings.swift in Sources */,
 				35B3B0061F0DB89D00C695C9 /* Damaged20.swift in Sources */,
 			);
