@@ -10,10 +10,12 @@ import Foundation
 
 class HealthResistenced20
 {
-    var typeName : String = ""
-    var triggerOnSameType : Bool = true
+    var displayName : String = "UnNamed"
+    var healthTrack : HealthTrackd20?
+    var typeByte : UInt32 = 0
+    var attackTypeWorksAgainst : d20AttackType = .NONE
     var value : Int = 0
-    var op : Character = "+"
+    var op : d20ResistanceOperations = .subtraction
     var modificationText : String
     {
         return "Performed operation: \(op) \(value)"
@@ -21,33 +23,52 @@ class HealthResistenced20
     
     init() {}
     
-    func modifyDamage ( damage : Damaged20)
+    func modifyDamage ( damage : Action20) -> Bool
     {
-        //TEST: if modifying the class passes through correctly
-        if( (triggerOnSameType && typeName == damage.damageType)  ||
-            ( !triggerOnSameType && typeName != damage.damageType))
+        //check if this mod works against this damage
+        if attackTypeWorksAgainst != damage.attackType || checkBypass(input: damage.damageType.damageByte)
         {
-            damage.value = selectOperation(damageValue: damage.value)
-            damage.modificationTracker.append(modificationText)
+            //this resistance doesn't work against this attack
+            return false
         }
+        //see damage needs applied to healthtrack
+        if healthTrack != nil
+        {
+            let damageType = Action20(newValue: value < damage.value ? value : damage.value, counter: CharacterManager.player.grabActionNumber(), damageType: DamageType() )
+            _ = healthTrack?.takeDamage(damage: damageType)
+            damage.undoWatchers.append
+                {
+                    self.healthTrack?.undoAction(value: damageType.value, actionWasHeal: false)
+            }
+        }
+        //modify damage
+        damage.value = selectOperation(damageValue: damage.value)
+        damage.modificationTracker.append(modificationText)
+        return true
+    }
+    
+    func checkBypass( input : UInt32) -> Bool
+    {
+        if input & typeByte == typeByte
+        {
+            return true
+        }
+        return false
     }
     
     func selectOperation( damageValue : Int) -> Int
     {
         switch op {
-        case "+":
+        case .addition:
             return damageValue + value
-        case d20ConstantStrings.OperationTypes.subtraction:
+        case .subtraction:
             return damageValue - value
-        case d20ConstantStrings.OperationTypes.multiplication:
+        case .multiplication:
             return damageValue * value
-        case d20ConstantStrings.OperationTypes.division:
+        case .division:
             return damageValue / value
-        case d20ConstantStrings.OperationTypes.mod:
+        case .mod:
             return damageValue % value
-        default:
-            print("HealthResistance - selectOperation: couldn't find equation for \(op)")
-            return 0
         }
     }
 }

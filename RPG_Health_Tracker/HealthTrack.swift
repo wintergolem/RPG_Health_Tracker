@@ -10,54 +10,127 @@ import Foundation
 
 class HealthTrackd20
 {
-    var startingHealth : Int
-    
-    var resistenceList : [HealthResistenced20] = []
-    var damageList : [Damaged20] = []
-    var damageTypeList : [DamageTyped20] = []
-    
-    init()
+    var _maxHealth : Int = 0
+    var _currentHealth : Int = 0
+    var maxHealth : Int
     {
-        startingHealth = 100
-        
-        var lethal : DamageTyped20 = DamageTyped20()
-        lethal.damageType = "lethal"
-        damageTypeList.append(lethal)
-    }
-    
-    func takeDamage( damage : Damaged20)
-    {
-        resistenceList.forEach{ resist in
-            resist.modifyDamage(damage: damage) }
-        damageList.append(damage)
-    }
-    
-    func undoLastDamage()
-    {
-       _ = damageList.popLast()
-    }
-    
-    func getCurrentHealth() -> String
-    {
-        if( damageList.count == 0)
+        get
         {
-            return "\(startingHealth)"
+            return _maxHealth
         }
-        
-        damageList.forEach{ dam in
-            
+        set
+        {
+            _maxHealth = newValue
+            callWatchers()
         }
-        var returnString = ""
-        damageTotals.forEach{ total in
-            if ( total.key == "lethal")
-            {
-                returnString = "\(startingHealth - total.value) / \(startingHealth) - " + returnString
+    }
+    var currentHealth : Int
+    {
+        get
+        {
+            return _currentHealth
+        }
+        set
+        {
+            _currentHealth = newValue
+            callWatchers()
+        }
+    }
+    var destoryIfDepleted : Bool
+    var displayName : String
+    var watchers : [()->()] = []
+    
+    init( displayName : String , health : Int , destroyOnceEmpty : Bool)
+    {
+        self.displayName = displayName
+        destoryIfDepleted = destroyOnceEmpty
+        maxHealth = health
+        currentHealth = health
+    }
+    
+    //MARK: - Damage
+    func takeDamage( damage : Action20) -> Int //return unused amount, default to zero if all is used
+    {
+        if currentHealth < damage.value
+        {
+            let unused = damage.value - currentHealth
+            currentHealth = 0
+            damage.undoWatchers.append
+                {
+                self.undoAction(value: damage.value - unused, actionWasHeal: false)
             }
-            else
-            {
-                returnString.append("\(total.key) - \(total.value)")
-            }
+            return unused
         }
-        return returnString
+        else
+        {
+            currentHealth -= damage.value
+            damage.undoWatchers.append
+                {
+                    self.undoAction(value: damage.value, actionWasHeal: false)
+            }
+            return 0
+        }
+    }
+    
+    //MARK: - Healing
+    func healDamage( heal : Action20)
+    {
+        currentHealth += heal.value
+    }
+    
+    func checkHealExceed(amount : Int) -> Bool
+    {
+        return amount > (maxHealth - currentHealth)
+    }
+    
+    //MARK: - Undo
+    func undoAction( value: Int , actionWasHeal : Bool)
+    {
+        if actionWasHeal
+        {
+            currentHealth -= value
+        }
+        else
+        {
+            currentHealth += value
+        }
+    }
+    
+    //MARK: - Display
+    func getHealthTrait( trait : d20HealthReturnType) -> String
+    {
+        switch trait {
+        case .FULL:
+            return "\(_currentHealth) / \(_maxHealth)"
+        case .AVAIL:
+            return "\(_maxHealth - ( _maxHealth - _currentHealth ) )"
+        case .DAMAGEDONE:
+            return "\(_maxHealth - _currentHealth)"
+        default:
+            return "\(_maxHealth)"
+        }
+    }
+    //MARK: - Misc
+    func healCeiling(amount : Int) -> Int
+    {
+        let damageTotal = maxHealth - currentHealth
+        return damageTotal > amount ? damageTotal : amount
+    }
+
+    func addWatcher( watcher: @escaping ()->() )
+    {
+        watchers.append(watcher)
+    }
+    
+    func callWatchers()
+    {
+        watchers.forEach{ watcher in
+            watcher()
+        }
+    }
+    
+    func damageDone() -> Int
+    {
+        return _maxHealth - _currentHealth
     }
 }
