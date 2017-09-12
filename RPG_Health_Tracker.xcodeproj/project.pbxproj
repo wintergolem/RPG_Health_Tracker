@@ -10,7 +10,11 @@
 		350443851F300B9A0010BB3B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350443841F300B9A0010BB3B /* Player.swift */; };
 		352ED0D31F314AC6009999FB /* ActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352ED0D21F314AC6009999FB /* ActionCollectionViewCell.swift */; };
 		352ED0D51F314D1C009999FB /* ViewControllerCollectionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352ED0D41F314D1C009999FB /* ViewControllerCollectionViews.swift */; };
+		35419A121F451CED00887538 /* DamageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35419A111F451CED00887538 /* DamageView.xib */; };
+		35419A171F45275E00887538 /* CountingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35419A161F45275E00887538 /* CountingCell.xib */; };
+		35419A191F4528B000887538 /* CountingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35419A181F4528B000887538 /* CountingCell.swift */; };
 		3550BDEC1F20274C00D3987B /* CharacterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3550BDEB1F20274C00D3987B /* CharacterPageViewController.swift */; };
+		3555C51E1F47C2FC00C3E304 /* ActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3555C51D1F47C2FC00C3E304 /* ActionCell.xib */; };
 		358128301F30FCC000CDB16D /* DamageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3581282F1F30FCC000CDB16D /* DamageType.swift */; };
 		358128321F31345400CDB16D /* HealthTrackTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358128311F31345400CDB16D /* HealthTrackTableCell.swift */; };
 		358128341F31362F00CDB16D /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358128331F31362F00CDB16D /* PlayerViewController.swift */; };
@@ -41,7 +45,11 @@
 		350443841F300B9A0010BB3B /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		352ED0D21F314AC6009999FB /* ActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCollectionViewCell.swift; sourceTree = "<group>"; };
 		352ED0D41F314D1C009999FB /* ViewControllerCollectionViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCollectionViews.swift; sourceTree = "<group>"; };
+		35419A111F451CED00887538 /* DamageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DamageView.xib; sourceTree = "<group>"; };
+		35419A161F45275E00887538 /* CountingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountingCell.xib; sourceTree = "<group>"; };
+		35419A181F4528B000887538 /* CountingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountingCell.swift; sourceTree = "<group>"; };
 		3550BDEB1F20274C00D3987B /* CharacterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterPageViewController.swift; sourceTree = "<group>"; };
+		3555C51D1F47C2FC00C3E304 /* ActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionCell.xib; sourceTree = "<group>"; };
 		3581282F1F30FCC000CDB16D /* DamageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DamageType.swift; sourceTree = "<group>"; };
 		358128311F31345400CDB16D /* HealthTrackTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthTrackTableCell.swift; sourceTree = "<group>"; };
 		358128331F31362F00CDB16D /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +89,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35419A151F45273000887538 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				35419A111F451CED00887538 /* DamageView.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		3555C51F1F47C30100C3E304 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				35419A161F45275E00887538 /* CountingCell.xib */,
+				3555C51D1F47C2FC00C3E304 /* ActionCell.xib */,
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
 		3581833F1F2697B400D6EA72 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,10 +117,11 @@
 		358497401F302BEC00B5F70E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				3555C51F1F47C30100C3E304 /* Nibs */,
 				3581833D1F26950600D6EA72 /* ResistanceTableViewCell.swift */,
-				358128311F31345400CDB16D /* HealthTrackTableCell.swift */,
 				352ED0D21F314AC6009999FB /* ActionCollectionViewCell.swift */,
 				358AE11F1F355E9200F96FBC /* DamageModCell.swift */,
+				35419A181F4528B000887538 /* CountingCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -104,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				35B3AFE41F0DB46600C695C9 /* CharacterViewController.swift */,
+				358128311F31345400CDB16D /* HealthTrackTableCell.swift */,
 				35B2027F1F1D945900EE02C4 /* CreationViewController.swift */,
 				3550BDEB1F20274C00D3987B /* CharacterPageViewController.swift */,
 				358128331F31362F00CDB16D /* PlayerViewController.swift */,
@@ -178,6 +205,7 @@
 		35B3AFFA1F0DB4D800C695C9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				35419A151F45273000887538 /* Views */,
 				358497401F302BEC00B5F70E /* Cells */,
 				358AE11C1F35583800F96FBC /* Storyboards */,
 				358AE11B1F35581E00F96FBC /* ViewControllers */,
@@ -282,8 +310,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				35B3AFF01F0DB46600C695C9 /* LaunchScreen.storyboard in Resources */,
+				35419A121F451CED00887538 /* DamageView.xib in Resources */,
 				35B3AFED1F0DB46600C695C9 /* Assets.xcassets in Resources */,
+				35419A171F45275E00887538 /* CountingCell.xib in Resources */,
 				35B3AFE81F0DB46600C695C9 /* Main.storyboard in Resources */,
+				3555C51E1F47C2FC00C3E304 /* ActionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +350,7 @@
 				35F5A1DA1F266ED8006898BB /* ViewControllerPickerViews.swift in Sources */,
 				352ED0D51F314D1C009999FB /* ViewControllerCollectionViews.swift in Sources */,
 				358AE11E1F3558C000F96FBC /* DamageModCreationViewController.swift in Sources */,
+				35419A191F4528B000887538 /* CountingCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

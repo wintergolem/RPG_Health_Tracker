@@ -10,8 +10,12 @@ import Foundation
 
 class AccessorArray<T>
 {
-    //MARK: - Array
+    //MARK: - Array 
     var array : Array<T> = []
+    
+    var count : Int {
+        return array.count
+    }
     
     //MARK: - Watchers
     private var watchCount : Int = 0
@@ -41,11 +45,6 @@ class AccessorArray<T>
         watchers.forEach { watch in
             watch()
         }
-    }
-    
-    func count() -> Int
-    {
-        return array.count
     }
     
     func popLast() -> T

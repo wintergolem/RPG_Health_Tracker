@@ -7,22 +7,44 @@
 //
 
 import UIKit
-//MARK: - PlayerViewController DataSource
+//MARK: - PlayerViewController
+
 extension PlayerViewController : UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        //1. Heal
-        //2. lethal or nonlethal
-        //3+ DamageTypes
-        return 2 + CharacterManager.player.damageTypeList.count()
+        if collectionView.tag == 0
+        {
+            //1. Heal
+            //2. lethal or nonlethal
+            //+ DamageTypes
+            return 2 + CharacterManager.player.damageTypeList.count
+        }
+        else
+        {
+            return 500
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "actionCell", for: indexPath) as! ActionCollectionViewCell
-        fillCell(byRow: indexPath.row, cell: cell)
-        return cell
+        if collectionView.tag == 0
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "actionCell", for: indexPath) as! ActionCollectionViewCell
+            fillCell(byRow: indexPath.row, cell: cell)
+            return cell
+        }
+        else
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Count", for: indexPath) as! CountingCell
+            //print("\(indexPath.row) \(indexPath.item)")
+            //cell.valueButton.titleLabel?.text = "\(indexPath.item)"
+            cell.value = indexPath.row + 1
+            cell.update()
+            cell.valueButton.addTarget(self, action: #selector(PlayerViewController.addAction(value:)), for: UIControlEvents.touchUpInside)
+            cell.pressedFunc = self.countCellButtonPressed
+            return cell
+        }
     }
     
     func fillCell( byRow : Int , cell : ActionCollectionViewCell)
@@ -69,8 +91,13 @@ extension PlayerViewController : UICollectionViewDataSource
             cell.titleLabel.text = CharacterManager.player.damageTypeList[byRow - 2]
         }
     }
+    
+    func countCellButtonPressed( value : Int)
+    {
+        self.addAction(value: value)
+    }
 }
-//MARK: - PlayerViewController Delegate
+//Delegate
 extension PlayerViewController : UICollectionViewDelegate
 {
     
@@ -82,7 +109,14 @@ extension PlayerViewController : UICollectionViewDelegateFlowLayout
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        return CGSize(width: 70, height: 70)
+        if collectionView.tag == 0
+        {
+            return CGSize(width: 70, height: 70)
+        }
+        else
+        {
+            return CGSize(width: 60, height: 60)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -104,14 +138,14 @@ extension DamageModCreationViewController : UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return CharacterManager.player.damageTypeList.count()
+        return CharacterManager.player.damageTypeList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "actionCell", for: indexPath) as! ActionCollectionViewCell
         cell.switchChangeFunc = {
-            self.actionTypeByte = self.actionTypeByte ^ UInt32(1 << indexPath.row)
+            self.actionTypeByte = self.actionTypeByte ^ UInt32(1 << indexPath.row + 1)
         }
         cell.activeSwitch.isOn = false
         cell.titleLabel.text = CharacterManager.player.damageTypeList[indexPath.row]
@@ -145,4 +179,3 @@ extension DamageModCreationViewController : UICollectionViewDelegateFlowLayout
     }
     
 }
-

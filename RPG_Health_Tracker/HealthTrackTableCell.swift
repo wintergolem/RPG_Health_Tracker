@@ -13,9 +13,6 @@ class HealthTrackTableCell: UITableViewCell {
     @IBOutlet weak var displayNameLabel: UILabel!
     @IBOutlet weak var healthDisplayLabel: UILabel!
     
-    var updateFunc : () -> () = {}
-    var displayType : d20HealthReturnType = .FULL
-    var healthTrack : HealthTrackd20?
     
     override func awakeFromNib()
     {
@@ -30,16 +27,4 @@ class HealthTrackTableCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func update()
-    {
-        if healthTrack != nil
-        {
-            healthDisplayLabel.text = healthTrack?.getHealthTrait(trait: displayType)
-        }
-        else
-        {
-            updateFunc()
-        }
-    }
-
 }

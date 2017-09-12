@@ -23,6 +23,10 @@ extension PlayerViewController : UITableViewDataSource
         {
             returnInt += 1
         }
+        if CharacterManager.player.separateHealthTracks.count > 0
+        {
+            returnInt += 1
+        }
         return returnInt
     }
     
@@ -36,17 +40,20 @@ extension PlayerViewController : UITableViewDataSource
         {
             return "Before"
         }
-        else
+        else if section == 1 && CharacterManager.player.beforeHealthTracks.count < 0 || section == 2 && CharacterManager.player.afterHealthTracks.count > 0
         {
             return "After"
+        }
+        else
+        {
+            return "Separate"
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "healthCell", for: indexPath) as! HealthTrackTableCell
-        cell.updateFunc = determineUpdateFuncForCell(indexPath: indexPath, cell: cell)
-        cell.updateFunc()
+        determineCellInfo(indexPath: indexPath, cell: cell)
         return cell
     }
     
@@ -60,14 +67,17 @@ extension PlayerViewController : UITableViewDataSource
         {
             return CharacterManager.player.beforeHealthTracks.count
         }
-        else
+        else if section == 1 && CharacterManager.player.beforeHealthTracks.count < 0 || section == 2 && CharacterManager.player.afterHealthTracks.count > 0
         {
             return CharacterManager.player.afterHealthTracks.count
         }
-        
+        else
+        {
+            return CharacterManager.player.separateHealthTracks.count
+        }
     }
     
-    func determineUpdateFuncForCell( indexPath : IndexPath , cell : HealthTrackTableCell) -> () -> ()
+    func determineCellInfo( indexPath : IndexPath , cell : HealthTrackTableCell)
     {
         //main health track
         if indexPath.section == 0
@@ -75,40 +85,43 @@ extension PlayerViewController : UITableViewDataSource
             switch( indexPath.row)
             {
             case 0:
-                return
-                    {
-                        cell.displayNameLabel.text = "Health Total: "
-                        cell.healthDisplayLabel.text = CharacterManager.player.getHealthForDisplay(displayType: .FULL)
-                }
+                cell.displayNameLabel.text = "Health Total: "
+                cell.healthDisplayLabel.text = CharacterManager.player.getHealthForDisplay(displayType: .FULL)
             case 1:
-                return
-                    {
-                        cell.displayNameLabel.text = "NonLethal: "
-                        cell.healthDisplayLabel.text = CharacterManager.player.getHealthForDisplay(displayType: .NONLETHAL)
-                }
+                cell.displayNameLabel.text = "NonLethal: "
+                cell.healthDisplayLabel.text = CharacterManager.player.getHealthForDisplay(displayType: .NONLETHAL)
             case 2:
-                return
-                    {
-                        cell.displayNameLabel.text = "Available: "
-                        cell.healthDisplayLabel.text = CharacterManager.player.getHealthForDisplay(displayType: .AVAIL)
-                }
+                cell.displayNameLabel.text = "Available: "
+                cell.healthDisplayLabel.text = CharacterManager.player.getHealthForDisplay(displayType: .AVAIL)
             default:
-                return {}
+                return
             }
         }
-        
-        //
-        return {}
+        else if indexPath.section == 1 && CharacterManager.player.beforeHealthTracks.count > 0
+        {//before track
+            cell.displayNameLabel.text = CharacterManager.player.beforeHealthTracks[indexPath.row].displayName
+            cell.healthDisplayLabel.text = CharacterManager.player.beforeHealthTracks[indexPath.row].getHealthTrait(trait: .LETHAL)
+        }
+        else if indexPath.section == 1 && CharacterManager.player.beforeHealthTracks.count < 0 || indexPath.section == 2 && CharacterManager.player.afterHealthTracks.count > 0
+        {//after track
+            cell.displayNameLabel.text = CharacterManager.player.afterHealthTracks[indexPath.row].displayName
+            cell.healthDisplayLabel.text = CharacterManager.player.afterHealthTracks[indexPath.row].getHealthTrait(trait: .LETHAL)
+        }
+        else
+        {//separate track
+            cell.displayNameLabel.text = CharacterManager.player.separateHealthTracks[indexPath.row].displayName
+            cell.healthDisplayLabel.text = CharacterManager.player.separateHealthTracks[indexPath.row].getHealthTrait(trait: .FULL)
+        }
     }
 }
 
-    
+
 //MARK: - DamageModCreationViewController
 extension DamageModCreationViewController : UITableViewDataSource
 {
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        if CharacterManager.player.resistanceList.count() == 0
+        if CharacterManager.player.resistanceList.count == 0
         {
             return 0
         }
@@ -175,7 +188,8 @@ extension DamageModCreationViewController : UITableViewDataSource
         }
         cell.nameLabel.text = CharacterManager.player.resistanceList[index].displayName
         cell.valueLabel.text = "\(CharacterManager.player.resistanceList[index].value)"
-        
+        cell.enableSwitch.isOn = CharacterManager.player.resistanceList[index].enabled
+        cell.switchAction = { CharacterManager.player.resistanceList[index].enabled = cell.enableSwitch.isOn }
         return cell
     }
     

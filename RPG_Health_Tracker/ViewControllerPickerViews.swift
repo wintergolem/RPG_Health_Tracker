@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//MARK: - CreationViewController
 extension CreationViewController : UIPickerViewDataSource
 {
     func numberOfComponents(in pickerView: UIPickerView) -> Int
@@ -61,7 +61,7 @@ extension CreationViewController : UIPickerViewDelegate
         
     }
 }
-
+//MARK: - DamageModCreationViewController
 extension DamageModCreationViewController : UIPickerViewDataSource
 {
     func numberOfComponents(in pickerView: UIPickerView) -> Int
@@ -88,5 +88,4 @@ extension DamageModCreationViewController : UIPickerViewDelegate
         opField.text = activeOperation.toString()
         opField.resignFirstResponder()
     }
-
 }

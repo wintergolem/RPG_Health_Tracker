@@ -75,7 +75,7 @@ class HealthTrackd20
     //MARK: - Healing
     func healDamage( heal : Action20)
     {
-        currentHealth += heal.value
+        currentHealth.addWithCeiling( heal.value , maxHealth)
     }
     
     func checkHealExceed(amount : Int) -> Bool

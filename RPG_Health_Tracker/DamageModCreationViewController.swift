@@ -92,6 +92,7 @@ class DamageModCreationViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    //MARK: - UI Alert (health track)
     weak var actionToEnable : UIAlertAction?
     var valuePassed : Bool = false
     var namePassed : Bool = false

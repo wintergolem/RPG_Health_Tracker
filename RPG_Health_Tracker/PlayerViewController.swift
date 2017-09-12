@@ -10,28 +10,42 @@ import UIKit
 
 class PlayerViewController: UIViewController {
 
+    //MARK: - Outlets
     @IBOutlet weak var healthTrackTableView: UITableView!
     @IBOutlet weak var actionCollectionView: UICollectionView!
-    @IBOutlet weak var actionValueField: UITextField!
-    
+    @IBOutlet weak var attackTypeSegCon: UISegmentedControl!
+    @IBOutlet weak var actionValueCollectionView: UICollectionView!
+    //MARK: - Properties
     var actionTypeByte : UInt32 = UInt32(3)
-    
+    //MARK: - Methods
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         //delegates and datasources
         healthTrackTableView.dataSource = self
         actionCollectionView.dataSource = self
         actionCollectionView.delegate = self
+        actionValueCollectionView.dataSource = self
+        actionValueCollectionView.delegate = self
         
-        //adding done tool bars
-        actionValueField.inputAccessoryView = UIToolbar.doneToolBar(#selector(self.doneButtonAction), target: self)
-        
+        let valueNib = UINib(nibName: "CountingCell", bundle: nil)
+        actionValueCollectionView.register(valueNib, forCellWithReuseIdentifier: "Count")
+        actionValueCollectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         //add watchers
         CharacterManager.player.mainHealthTrack.addWatcher {
             self.healthTrackTableView.reloadData()
         }
         CharacterManager.player.nonLethalTrack.addWatcher {
+            self.healthTrackTableView.reloadData()
+        }
+        _ = CharacterManager.player.beforeHealthTracks.addWatcher {
+            self.healthTrackTableView.reloadData()
+        }
+        _ = CharacterManager.player.afterHealthTracks.addWatcher {
+            self.healthTrackTableView.reloadData()
+        }
+        _ = CharacterManager.player.separateHealthTracks.addWatcher {
             self.healthTrackTableView.reloadData()
         }
     }
@@ -46,17 +60,35 @@ class PlayerViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    @IBAction func addActionButtonPressed(_ sender: UIButton)
+    func determineAttackType() -> d20AttackType
     {
-        //build damageType class
+        switch attackTypeSegCon.selectedSegmentIndex
+        {
+        case 0:
+            return .DR
+        case 1:
+            return .RESIST
+        case 2:
+            return .NONE
+        default:
+            return .DR
+        }
+        
+    }
+    
+    func addAction (value : Int)
+    {
+        //build damageType Class
         let damageType = DamageType()
         damageType.damageByte = actionTypeByte
         damageType.damageTypeForDisplay.append("Not implemented yet")
-        //grab value
-        let value = Int(actionValueField.text!)!
-        //create action
+        
+        let attackType : d20AttackType = determineAttackType()
+        
         let action = Action20(newValue: value, counter: CharacterManager.player.grabActionNumber(), damageType: damageType)
-        //pass action to player
+        action.attackType = attackType
         CharacterManager.player.takeAction(action: action)
     }
+    
+    
 }

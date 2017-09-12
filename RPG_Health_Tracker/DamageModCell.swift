@@ -12,7 +12,9 @@ class DamageModCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var enableSwitch: UISwitch!
     
+    var switchAction : ()->() = {}
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,4 +27,8 @@ class DamageModCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func switchChanged(_ sender: UISwitch)
+    {
+        switchAction()
+    }
 }

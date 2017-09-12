@@ -13,9 +13,9 @@ class Player
     //MARK: - Healthtrack properties
     var mainHealthTrack : HealthTrackd20 = HealthTrackd20(displayName: "main", health: 100, destroyOnceEmpty: false)
     var nonLethalTrack : HealthTrackd20 = HealthTrackd20(displayName: "nonLethal", health: 100, destroyOnceEmpty: false)
-    var beforeHealthTracks : [HealthTrackd20] = []
-    var afterHealthTracks : [HealthTrackd20] = []
-    var separateHealthTracks : [HealthTrackd20] = []
+    var beforeHealthTracks : AccessorArray<HealthTrackd20> = AccessorArray<HealthTrackd20>()
+    var afterHealthTracks : AccessorArray<HealthTrackd20> = AccessorArray<HealthTrackd20>()
+    var separateHealthTracks : AccessorArray<HealthTrackd20> = AccessorArray<HealthTrackd20>()
     var healthWatchers : [() -> ()] = []
     
     //MARK: - Action tracking properties
@@ -30,13 +30,38 @@ class Player
     
     
     
-    //MARK: - Properities
+    //MARK: - Methods
     init()
     {
-        damageTypeList.array.append(contentsOf: ["Physical", "Fire", "Electric", "Cold", "Sonic", "Force", "Holy", "Good", "Evil"] )
+        damageTypeList.array.append(contentsOf: ["Slashing", "Fire", "Electric", "Cold", "Sonic", "Force", "Holy", "Good", "Evil"] )
         _ = resistanceList.addWatcher {
             self.reorderMods()
         }
+        
+        //add test extra healthtracks
+        _ = addHealthTrack(name: "AfterTest", maxHealth: 100, currentHealth: 100, type: .AFTER, destoryOnceEmpty: false)
+        _ = addHealthTrack(name: "BeforeTest", maxHealth: 100, type: .BEFORE, destoryOnceEmpty: false)
+        _ = addHealthTrack(name: "SeperateTest", maxHealth: 100, type: .SEPARATE)
+        
+        //add test resistances
+        //fire
+        let resistTemp : HealthResistenced20 = HealthResistenced20()
+        resistTemp.attackTypeWorksAgainst = .RESIST
+        resistTemp.displayName = "Fire Resist"
+        resistTemp.op = .subtraction
+        resistTemp.typeByte = UInt32(4)
+        resistTemp.value = 5
+        resistanceList.append(newValue: resistTemp)
+        
+        //slashing
+        let slashTemp : HealthResistenced20 = HealthResistenced20()
+        slashTemp.attackTypeWorksAgainst = .DR
+        slashTemp.displayName = "Slashing DR"
+        slashTemp.op = .subtraction
+        slashTemp.typeByte = UInt32(2)
+        slashTemp.value = 5
+        resistanceList.append(newValue: slashTemp)
+
     }
     
     func takeAction( action: Action20)
@@ -96,10 +121,10 @@ class Player
         //before
         if beforeHealthTracks.count > 0
         {
-            for tracks in beforeHealthTracks
+            for track in beforeHealthTracks.array
             {
-                doDamage(track: tracks, damage: damage)
-                if( damage.value == 0)
+                doDamage(track: track, damage: damage)
+                if( damage.value <= 0)
                 {
                     return
                 }
@@ -112,10 +137,10 @@ class Player
         //after
         if afterHealthTracks.count > 0
         {
-            for tracks in afterHealthTracks
+            for tracks in afterHealthTracks.array
             {
                 doDamage(track: tracks, damage: damage)
-                if( damage.value == 0)
+                if( damage.value <= 0)
                 {
                     return
                 }
@@ -126,28 +151,19 @@ class Player
     
     func doDamage( track : HealthTrackd20 , damage : Action20)
     {
-        let leftover = track.takeDamage(damage: damage)
-        if leftover != 0
-        {
-            damage.value -= leftover
-        }
-        else
-        {
-            damage.value = 0
-        }
+        damage.value = track.takeDamage(damage: damage)
+        //damage.value.subtractWithFloor( leftover )
+        //damage.value = leftover
 
     }
     //MARK: - Healing
     func takeHeal(heal : Action20)
     {
+        nonLethalTrack.healDamage(heal: heal)
         let lethalBool : Bool = heal.damageType.popFirst()
         if lethalBool
         {
             mainHealthTrack.healDamage(heal: heal)
-        }
-        else
-        {
-            nonLethalTrack.healDamage(heal: heal)
         }
     }
     //MARK: - Undo's
@@ -183,11 +199,11 @@ class Player
         
         switch type {
         case .SEPARATE:
-            separateHealthTracks.append(track)
+            separateHealthTracks.append(newValue: track)
         case .AFTER:
-            afterHealthTracks.append(track)
+            afterHealthTracks.append(newValue: track)
         case .BEFORE:
-            beforeHealthTracks.append(track)
+            beforeHealthTracks.append(newValue: track)
         }
         return track
     }
@@ -207,10 +223,10 @@ class Player
         if( displayType == .AVAIL)
         {
             var value = mainHealthTrack._currentHealth - nonLethalTrack.damageDone() //add main w/ nonlethal
-            beforeHealthTracks.forEach{ track in
+            beforeHealthTracks.array.forEach{ track in
                 value += track.currentHealth
             }
-            afterHealthTracks.forEach{ track in
+            afterHealthTracks.array.forEach{ track in
                 value += track.currentHealth
             }
             

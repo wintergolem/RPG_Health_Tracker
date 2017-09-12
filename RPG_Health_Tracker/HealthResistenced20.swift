@@ -10,6 +10,7 @@ import Foundation
 
 class HealthResistenced20
 {
+    var enabled: Bool = true
     var displayName : String = "UnNamed"
     var healthTrack : HealthTrackd20?
     var typeByte : UInt32 = 0
@@ -26,7 +27,7 @@ class HealthResistenced20
     func modifyDamage ( damage : Action20) -> Bool
     {
         //check if this mod works against this damage
-        if attackTypeWorksAgainst != damage.attackType || checkBypass(input: damage.damageType.damageByte)
+        if !enabled || attackTypeWorksAgainst != damage.attackType || checkBypass(input: damage.damageType.damageByte)
         {
             //this resistance doesn't work against this attack
             return false
@@ -42,7 +43,7 @@ class HealthResistenced20
             }
         }
         //modify damage
-        damage.value = selectOperation(damageValue: damage.value)
+        damage.value = Int.floor( selectOperation(damageValue: damage.value) )
         damage.modificationTracker.append(modificationText)
         return true
     }
