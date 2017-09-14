@@ -38,13 +38,17 @@ class AccessorArray<T>
         return watchCount - 1
     }
     
+    func callWatchers()
+    {
+        watchers.forEach { watch in
+            watch()
+        }
+    }
     //MARK: - Array methods
     func append( newValue : T)
     {
         array.append(newValue)
-        watchers.forEach { watch in
-            watch()
-        }
+        callWatchers()
     }
     
     func popLast() -> T

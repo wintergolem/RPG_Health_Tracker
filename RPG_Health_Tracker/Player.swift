@@ -126,9 +126,11 @@ class Player
                 doDamage(track: track, damage: damage)
                 if( damage.value <= 0)
                 {
+                    beforeHealthTracks.callWatchers()
                     return
                 }
             }
+            beforeHealthTracks.callWatchers()
         }
         
         //main
@@ -142,9 +144,11 @@ class Player
                 doDamage(track: tracks, damage: damage)
                 if( damage.value <= 0)
                 {
+                    afterHealthTracks.callWatchers()
                     return
                 }
             }
+            afterHealthTracks.callWatchers()
         }
 
     }

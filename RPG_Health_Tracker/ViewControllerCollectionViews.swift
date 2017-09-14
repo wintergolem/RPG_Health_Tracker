@@ -37,12 +37,8 @@ extension PlayerViewController : UICollectionViewDataSource
         else
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Count", for: indexPath) as! CountingCell
-            //print("\(indexPath.row) \(indexPath.item)")
-            //cell.valueButton.titleLabel?.text = "\(indexPath.item)"
-            cell.value = indexPath.row + 1
-            cell.update()
-            cell.valueButton.addTarget(self, action: #selector(PlayerViewController.addAction(value:)), for: UIControlEvents.touchUpInside)
-            cell.pressedFunc = self.countCellButtonPressed
+            cell.label.text = "\(indexPath.row + 1)"
+            cell.label.textColor = UIColor(red: 0, green: 1, blue: 0.9, alpha: 1)
             return cell
         }
     }
@@ -91,16 +87,14 @@ extension PlayerViewController : UICollectionViewDataSource
             cell.titleLabel.text = CharacterManager.player.damageTypeList[byRow - 2]
         }
     }
-    
-    func countCellButtonPressed( value : Int)
-    {
-        self.addAction(value: value)
-    }
 }
 //Delegate
 extension PlayerViewController : UICollectionViewDelegate
 {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        addAction(value: indexPath.row + 1) //adjust for 0-index
+    }
 }
 
 extension PlayerViewController : UICollectionViewDelegateFlowLayout

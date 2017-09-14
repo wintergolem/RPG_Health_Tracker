@@ -100,12 +100,12 @@ extension PlayerViewController : UITableViewDataSource
         else if indexPath.section == 1 && CharacterManager.player.beforeHealthTracks.count > 0
         {//before track
             cell.displayNameLabel.text = CharacterManager.player.beforeHealthTracks[indexPath.row].displayName
-            cell.healthDisplayLabel.text = CharacterManager.player.beforeHealthTracks[indexPath.row].getHealthTrait(trait: .LETHAL)
+            cell.healthDisplayLabel.text = CharacterManager.player.beforeHealthTracks[indexPath.row].getHealthTrait(trait: .FULL)
         }
         else if indexPath.section == 1 && CharacterManager.player.beforeHealthTracks.count < 0 || indexPath.section == 2 && CharacterManager.player.afterHealthTracks.count > 0
         {//after track
             cell.displayNameLabel.text = CharacterManager.player.afterHealthTracks[indexPath.row].displayName
-            cell.healthDisplayLabel.text = CharacterManager.player.afterHealthTracks[indexPath.row].getHealthTrait(trait: .LETHAL)
+            cell.healthDisplayLabel.text = CharacterManager.player.afterHealthTracks[indexPath.row].getHealthTrait(trait: .FULL)
         }
         else
         {//separate track
@@ -214,5 +214,31 @@ extension DamageModCreationViewController : UITableViewDataSource
         {
             return false
         }
+    }
+}
+
+//MARK: - CharacterSelect
+extension CharacterSelectViewController: UITableViewDelegate
+{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        //load character
+        changeScenes()
+    }
+}
+
+extension CharacterSelectViewController : UITableViewDataSource
+{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        //core data class -> grab amount of characters
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Select") as! CharacterSelectCell
+        cell.nameLabel.text = "Tempt Character Name"
+        cell.healthLabel.text = "110/1000"
+        return cell
     }
 }

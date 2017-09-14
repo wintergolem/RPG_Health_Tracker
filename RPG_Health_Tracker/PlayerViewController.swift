@@ -15,8 +15,10 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var actionCollectionView: UICollectionView!
     @IBOutlet weak var attackTypeSegCon: UISegmentedControl!
     @IBOutlet weak var actionValueCollectionView: UICollectionView!
+    
     //MARK: - Properties
     var actionTypeByte : UInt32 = UInt32(3)
+    
     //MARK: - Methods
     override func viewDidLoad()
     {

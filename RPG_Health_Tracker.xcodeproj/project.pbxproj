@@ -15,6 +15,8 @@
 		35419A191F4528B000887538 /* CountingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35419A181F4528B000887538 /* CountingCell.swift */; };
 		3550BDEC1F20274C00D3987B /* CharacterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3550BDEB1F20274C00D3987B /* CharacterPageViewController.swift */; };
 		3555C51E1F47C2FC00C3E304 /* ActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3555C51D1F47C2FC00C3E304 /* ActionCell.xib */; };
+		3571C5871F6A0F9D00DA81F4 /* CharacterSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3571C5861F6A0F9D00DA81F4 /* CharacterSelectCell.swift */; };
+		3571C5891F6A12BF00DA81F4 /* CharacterSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3571C5881F6A12BF00DA81F4 /* CharacterSelectViewController.swift */; };
 		358128301F30FCC000CDB16D /* DamageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3581282F1F30FCC000CDB16D /* DamageType.swift */; };
 		358128321F31345400CDB16D /* HealthTrackTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358128311F31345400CDB16D /* HealthTrackTableCell.swift */; };
 		358128341F31362F00CDB16D /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358128331F31362F00CDB16D /* PlayerViewController.swift */; };
@@ -27,7 +29,6 @@
 		35A7E44C1F104C3F002D6582 /* d20Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A7E44B1F104C3F002D6582 /* d20Enums.swift */; };
 		35B202801F1D945900EE02C4 /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2027F1F1D945900EE02C4 /* CreationViewController.swift */; };
 		35B3AFE31F0DB46600C695C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3AFE21F0DB46600C695C9 /* AppDelegate.swift */; };
-		35B3AFE51F0DB46600C695C9 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3AFE41F0DB46600C695C9 /* CharacterViewController.swift */; };
 		35B3AFE81F0DB46600C695C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35B3AFE61F0DB46600C695C9 /* Main.storyboard */; };
 		35B3AFEB1F0DB46600C695C9 /* RPG_Health_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 35B3AFE91F0DB46600C695C9 /* RPG_Health_Tracker.xcdatamodeld */; };
 		35B3AFED1F0DB46600C695C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B3AFEC1F0DB46600C695C9 /* Assets.xcassets */; };
@@ -50,6 +51,8 @@
 		35419A181F4528B000887538 /* CountingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountingCell.swift; sourceTree = "<group>"; };
 		3550BDEB1F20274C00D3987B /* CharacterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterPageViewController.swift; sourceTree = "<group>"; };
 		3555C51D1F47C2FC00C3E304 /* ActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionCell.xib; sourceTree = "<group>"; };
+		3571C5861F6A0F9D00DA81F4 /* CharacterSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSelectCell.swift; sourceTree = "<group>"; };
+		3571C5881F6A12BF00DA81F4 /* CharacterSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSelectViewController.swift; sourceTree = "<group>"; };
 		3581282F1F30FCC000CDB16D /* DamageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DamageType.swift; sourceTree = "<group>"; };
 		358128311F31345400CDB16D /* HealthTrackTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthTrackTableCell.swift; sourceTree = "<group>"; };
 		358128331F31362F00CDB16D /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
@@ -63,7 +66,6 @@
 		35B2027F1F1D945900EE02C4 /* CreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationViewController.swift; sourceTree = "<group>"; };
 		35B3AFDF1F0DB46600C695C9 /* RPG_Health_Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPG_Health_Tracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B3AFE21F0DB46600C695C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		35B3AFE41F0DB46600C695C9 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		35B3AFE71F0DB46600C695C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35B3AFEA1F0DB46600C695C9 /* RPG_Health_Tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RPG_Health_Tracker.xcdatamodel; sourceTree = "<group>"; };
 		35B3AFEC1F0DB46600C695C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,6 +124,8 @@
 				352ED0D21F314AC6009999FB /* ActionCollectionViewCell.swift */,
 				358AE11F1F355E9200F96FBC /* DamageModCell.swift */,
 				35419A181F4528B000887538 /* CountingCell.swift */,
+				3571C5861F6A0F9D00DA81F4 /* CharacterSelectCell.swift */,
+				358128311F31345400CDB16D /* HealthTrackTableCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -129,12 +133,11 @@
 		358AE11B1F35581E00F96FBC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				35B3AFE41F0DB46600C695C9 /* CharacterViewController.swift */,
-				358128311F31345400CDB16D /* HealthTrackTableCell.swift */,
 				35B2027F1F1D945900EE02C4 /* CreationViewController.swift */,
 				3550BDEB1F20274C00D3987B /* CharacterPageViewController.swift */,
 				358128331F31362F00CDB16D /* PlayerViewController.swift */,
 				358AE11D1F3558C000F96FBC /* DamageModCreationViewController.swift */,
+				3571C5881F6A12BF00DA81F4 /* CharacterSelectViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -328,13 +331,13 @@
 				35B3B0001F0DB76300C695C9 /* HealthResistenced20.swift in Sources */,
 				35F5A1D81F266230006898BB /* Toolbar.swift in Sources */,
 				3584973F1F30117900B5F70E /* accessorArray.swift in Sources */,
-				35B3AFE51F0DB46600C695C9 /* CharacterViewController.swift in Sources */,
 				358128321F31345400CDB16D /* HealthTrackTableCell.swift in Sources */,
 				35B3AFE31F0DB46600C695C9 /* AppDelegate.swift in Sources */,
 				3581833E1F26950600D6EA72 /* ResistanceTableViewCell.swift in Sources */,
 				358128341F31362F00CDB16D /* PlayerViewController.swift in Sources */,
 				35B3AFEB1F0DB46600C695C9 /* RPG_Health_Tracker.xcdatamodeld in Sources */,
 				35B3AFFD1F0DB64E00C695C9 /* HealthTrack.swift in Sources */,
+				3571C5871F6A0F9D00DA81F4 /* CharacterSelectCell.swift in Sources */,
 				35B202801F1D945900EE02C4 /* CreationViewController.swift in Sources */,
 				3550BDEC1F20274C00D3987B /* CharacterPageViewController.swift in Sources */,
 				35DD16191F3BE481004B75E8 /* Primitives.swift in Sources */,
@@ -346,6 +349,7 @@
 				35A7E44C1F104C3F002D6582 /* d20Enums.swift in Sources */,
 				352ED0D31F314AC6009999FB /* ActionCollectionViewCell.swift in Sources */,
 				35B3B0061F0DB89D00C695C9 /* Actiond20.swift in Sources */,
+				3571C5891F6A12BF00DA81F4 /* CharacterSelectViewController.swift in Sources */,
 				350443851F300B9A0010BB3B /* Player.swift in Sources */,
 				35F5A1DA1F266ED8006898BB /* ViewControllerPickerViews.swift in Sources */,
 				352ED0D51F314D1C009999FB /* ViewControllerCollectionViews.swift in Sources */,

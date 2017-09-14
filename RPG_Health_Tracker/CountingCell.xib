@@ -15,27 +15,30 @@
             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcr-Qr-XfA">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVc-aB-P3x">
                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                    <color key="backgroundColor" red="1" green="1" blue="0.80702039930555558" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="-2">
-                        <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="valueButtonPressed:" destination="-1" eventType="touchUpInside" id="pnw-WL-ukt"/>
-                    </connections>
-                </button>
+                    <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <attributedString key="attributedText">
+                        <fragment content="0">
+                            <attributes>
+                                <font key="NSFont" size="18" name=".SFNSDisplay"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fcr-Qr-XfA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XLK-fx-3dE"/>
-                <constraint firstAttribute="trailing" secondItem="fcr-Qr-XfA" secondAttribute="trailing" id="c0I-7S-jIg"/>
-                <constraint firstItem="fcr-Qr-XfA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="naw-hs-2d6"/>
-                <constraint firstAttribute="bottom" secondItem="fcr-Qr-XfA" secondAttribute="bottom" id="vod-uh-KsU"/>
+                <constraint firstAttribute="trailing" secondItem="bVc-aB-P3x" secondAttribute="trailing" id="dcK-zV-qsg"/>
+                <constraint firstItem="bVc-aB-P3x" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gXa-wU-4M3"/>
+                <constraint firstAttribute="bottom" secondItem="bVc-aB-P3x" secondAttribute="bottom" id="gpY-Zj-0pa"/>
+                <constraint firstItem="bVc-aB-P3x" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tcM-yb-Vsj"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="valueButton" destination="fcr-Qr-XfA" id="Prc-bp-sGp"/>
+                <outlet property="label" destination="bVc-aB-P3x" id="NC8-4d-Tqj"/>
             </connections>
             <point key="canvasLocation" x="-296" y="454"/>
         </view>
