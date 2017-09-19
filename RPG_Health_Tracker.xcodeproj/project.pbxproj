@@ -10,9 +10,10 @@
 		350443851F300B9A0010BB3B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350443841F300B9A0010BB3B /* Player.swift */; };
 		352ED0D31F314AC6009999FB /* ActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352ED0D21F314AC6009999FB /* ActionCollectionViewCell.swift */; };
 		352ED0D51F314D1C009999FB /* ViewControllerCollectionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352ED0D41F314D1C009999FB /* ViewControllerCollectionViews.swift */; };
-		35419A121F451CED00887538 /* DamageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35419A111F451CED00887538 /* DamageView.xib */; };
 		35419A171F45275E00887538 /* CountingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35419A161F45275E00887538 /* CountingCell.xib */; };
 		35419A191F4528B000887538 /* CountingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35419A181F4528B000887538 /* CountingCell.swift */; };
+		354D0AE31F70910C00064DE4 /* DamageTypeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354D0AE21F70910C00064DE4 /* DamageTypeStackView.swift */; };
+		354D0AE51F70AD8A00064DE4 /* DamageTypeCatalogued.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354D0AE41F70AD8A00064DE4 /* DamageTypeCatalogued.swift */; };
 		3550BDEC1F20274C00D3987B /* CharacterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3550BDEB1F20274C00D3987B /* CharacterPageViewController.swift */; };
 		3555C51E1F47C2FC00C3E304 /* ActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3555C51D1F47C2FC00C3E304 /* ActionCell.xib */; };
 		3571C5871F6A0F9D00DA81F4 /* CharacterSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3571C5861F6A0F9D00DA81F4 /* CharacterSelectCell.swift */; };
@@ -46,9 +47,10 @@
 		350443841F300B9A0010BB3B /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		352ED0D21F314AC6009999FB /* ActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCollectionViewCell.swift; sourceTree = "<group>"; };
 		352ED0D41F314D1C009999FB /* ViewControllerCollectionViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCollectionViews.swift; sourceTree = "<group>"; };
-		35419A111F451CED00887538 /* DamageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DamageView.xib; sourceTree = "<group>"; };
 		35419A161F45275E00887538 /* CountingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountingCell.xib; sourceTree = "<group>"; };
 		35419A181F4528B000887538 /* CountingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountingCell.swift; sourceTree = "<group>"; };
+		354D0AE21F70910C00064DE4 /* DamageTypeStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DamageTypeStackView.swift; sourceTree = "<group>"; };
+		354D0AE41F70AD8A00064DE4 /* DamageTypeCatalogued.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DamageTypeCatalogued.swift; sourceTree = "<group>"; };
 		3550BDEB1F20274C00D3987B /* CharacterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterPageViewController.swift; sourceTree = "<group>"; };
 		3555C51D1F47C2FC00C3E304 /* ActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionCell.xib; sourceTree = "<group>"; };
 		3571C5861F6A0F9D00DA81F4 /* CharacterSelectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSelectCell.swift; sourceTree = "<group>"; };
@@ -94,7 +96,7 @@
 		35419A151F45273000887538 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				35419A111F451CED00887538 /* DamageView.xib */,
+				354D0AE21F70910C00064DE4 /* DamageTypeStackView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -201,6 +203,7 @@
 				350443841F300B9A0010BB3B /* Player.swift */,
 				3581282F1F30FCC000CDB16D /* DamageType.swift */,
 				358128351F31367400CDB16D /* CharacterManager(debug).swift */,
+				354D0AE41F70AD8A00064DE4 /* DamageTypeCatalogued.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -313,7 +316,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				35B3AFF01F0DB46600C695C9 /* LaunchScreen.storyboard in Resources */,
-				35419A121F451CED00887538 /* DamageView.xib in Resources */,
 				35B3AFED1F0DB46600C695C9 /* Assets.xcassets in Resources */,
 				35419A171F45275E00887538 /* CountingCell.xib in Resources */,
 				35B3AFE81F0DB46600C695C9 /* Main.storyboard in Resources */,
@@ -348,12 +350,14 @@
 				358AE1201F355E9200F96FBC /* DamageModCell.swift in Sources */,
 				35A7E44C1F104C3F002D6582 /* d20Enums.swift in Sources */,
 				352ED0D31F314AC6009999FB /* ActionCollectionViewCell.swift in Sources */,
+				354D0AE51F70AD8A00064DE4 /* DamageTypeCatalogued.swift in Sources */,
 				35B3B0061F0DB89D00C695C9 /* Actiond20.swift in Sources */,
 				3571C5891F6A12BF00DA81F4 /* CharacterSelectViewController.swift in Sources */,
 				350443851F300B9A0010BB3B /* Player.swift in Sources */,
 				35F5A1DA1F266ED8006898BB /* ViewControllerPickerViews.swift in Sources */,
 				352ED0D51F314D1C009999FB /* ViewControllerCollectionViews.swift in Sources */,
 				358AE11E1F3558C000F96FBC /* DamageModCreationViewController.swift in Sources */,
+				354D0AE31F70910C00064DE4 /* DamageTypeStackView.swift in Sources */,
 				35419A191F4528B000887538 /* CountingCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

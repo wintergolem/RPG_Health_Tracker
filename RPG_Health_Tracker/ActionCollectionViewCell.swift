@@ -13,10 +13,23 @@ class ActionCollectionViewCell: UICollectionViewCell
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var activeSwitch: UISwitch!
     
-    var switchChangeFunc : () -> () = {}
+    //var switchChangeFunc : () -> () = {}
+    var activeText : String = "active"
+    var inactiveText : String = "inactive"
+    var value : Int = -1
     
     @IBAction func activeSwitchChanged(_ sender: UISwitch)
     {
-        switchChangeFunc()
+        //switchChangeFunc()
+        
+        if activeSwitch.isOn
+        {
+            titleLabel.text = activeText
+        }
+        else
+        {
+            titleLabel.text = inactiveText
+        }
+        CharacterManager.player.applyTypeChange( typeChange: value )
     }
 }

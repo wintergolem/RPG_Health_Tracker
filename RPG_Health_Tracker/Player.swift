@@ -24,16 +24,16 @@ class Player
     
     //MARK: - Resistance properties
     var resistanceList : AccessorArray = AccessorArray<HealthResistenced20>()
+    var actionTypeByte : UInt32 = UInt32(3)
     
     //Mark: - Other properties
-    var damageTypeList : AccessorArray = AccessorArray<String>()
-    
+    //moved var damageTypeList : AccessorArray = AccessorArray<String>()
+    var currentAttackType : d20AttackType = .NONE
     
     
     //MARK: - Methods
     init()
     {
-        damageTypeList.array.append(contentsOf: ["Slashing", "Fire", "Electric", "Cold", "Sonic", "Force", "Holy", "Good", "Evil"] )
         _ = resistanceList.addWatcher {
             self.reorderMods()
         }
@@ -210,6 +210,12 @@ class Player
             beforeHealthTracks.append(newValue: track)
         }
         return track
+    }
+    
+    //Mark: - Resistance
+    func applyTypeChange( typeChange : Int )
+    {
+        actionTypeByte = actionTypeByte ^ UInt32(1 << typeChange)
     }
     
     //MARK: - Display

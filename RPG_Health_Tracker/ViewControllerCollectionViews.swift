@@ -13,7 +13,7 @@ extension PlayerViewController : UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        if collectionView.tag == 0
+        /*if collectionView.tag == 0
         {
             //1. Heal
             //2. lethal or nonlethal
@@ -22,72 +22,29 @@ extension PlayerViewController : UICollectionViewDataSource
         }
         else
         {
-            return 500
-        }
+          */  return 50
+        //}
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        if collectionView.tag == 0
+       /* if collectionView.tag == 0
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "actionCell", for: indexPath) as! ActionCollectionViewCell
             fillCell(byRow: indexPath.row, cell: cell)
             return cell
         }
         else
-        {
+        {*/
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Count", for: indexPath) as! CountingCell
             cell.label.text = "\(indexPath.row + 1)"
             cell.label.textColor = UIColor(red: 0, green: 1, blue: 0.9, alpha: 1)
             return cell
-        }
+       // }
     }
     
-    func fillCell( byRow : Int , cell : ActionCollectionViewCell)
-    {
-        if byRow == 0
-        {
-            cell.switchChangeFunc = {
-                if cell.activeSwitch.isOn
-                {
-                    cell.titleLabel.text = "Damage"
-                }
-                else
-                {
-                    cell.titleLabel.text = "Heal"
-                }
-                self.actionTypeByte = self.actionTypeByte ^ UInt32(1 << byRow)
-            }
-            cell.titleLabel.text = "Damage"
-            cell.activeSwitch.isOn = true
-        }
-        else if byRow == 1
-        {
-            cell.switchChangeFunc = {
-                if cell.activeSwitch.isOn
-                {
-                    cell.titleLabel.text = "Lethal"
-                }
-                else
-                {
-                    cell.titleLabel.text = "NonLethal"
-                }
-                self.actionTypeByte = self.actionTypeByte ^ UInt32(1 << byRow)
-            }
-            cell.titleLabel.text = "Lethal"
-            cell.activeSwitch.isOn = true
-        }
-        else
-        {
-            //TODO: Consider adding strikethrough - 
-            cell.switchChangeFunc = {
-                self.actionTypeByte = self.actionTypeByte ^ UInt32(1 << byRow)
-            }
-            cell.activeSwitch.isOn = false
-            cell.titleLabel.text = CharacterManager.player.damageTypeList[byRow - 2]
-        }
-    }
 }
+
 //Delegate
 extension PlayerViewController : UICollectionViewDelegate
 {
@@ -132,17 +89,27 @@ extension DamageModCreationViewController : UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return CharacterManager.player.damageTypeList.count
+        var value = 0
+        if activeAttackType == .DR
+        {
+            value = DamageTypeCatalogued.physical.count
+        }
+        else if activeAttackType == .RESIST
+        {
+            value = DamageTypeCatalogued.energy.count
+        }
+        return value
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "actionCell", for: indexPath) as! ActionCollectionViewCell
-        cell.switchChangeFunc = {
-            self.actionTypeByte = self.actionTypeByte ^ UInt32(1 << indexPath.row + 1)
-        }
+        let text = DamageTypeCatalogued.getTextForValue(indexPath.row, activeAttackType)
         cell.activeSwitch.isOn = false
-        cell.titleLabel.text = CharacterManager.player.damageTypeList[indexPath.row]
+        cell.activeText = text
+        cell.inactiveText = text
+        cell.titleLabel.text = cell.activeSwitch.isOn ? cell.activeText : cell.inactiveText
+        cell.value = indexPath.row
         return cell
     }
 }

@@ -28,7 +28,7 @@ class DamageModCreationViewController: UIViewController {
         newMod.typeByte = actionTypeByte
         newMod.displayName = modNameField.text!
         newMod.op = activeOperation
-        newMod.attackTypeWorksAgainst = resistTypeSegCon.selectedSegmentIndex == 0 ? d20AttackType.DR : d20AttackType.RESIST
+        newMod.attackTypeWorksAgainst = activeAttackType
         newMod.value = Int(modValueField.text!)!
         if addTrackSeg.isOn
         {
@@ -42,9 +42,22 @@ class DamageModCreationViewController: UIViewController {
         }
     }
     
+    @IBAction func resistTypeSegConValueChanged(_ sender: UISegmentedControl)
+    {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            activeAttackType = .DR
+        case 1: activeAttackType = .RESIST
+        case 2: activeAttackType = .NONE
+        default:
+            activeAttackType = .NONE
+        }
+        damageTypeTable.reloadData()
+    }
     //MARK: - Properities
     var actionTypeByte : UInt32 = UInt32()
     var activeOperation : d20ResistanceOperations = d20ResistanceOperations.subtraction
+    var activeAttackType : d20AttackType = .DR
     
     //MARK: Lazy Properities
     lazy var doneToolBar : UIToolbar = UIToolbar.doneToolBar(#selector(self.doneButtonAction), target: self)

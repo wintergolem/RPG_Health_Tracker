@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 class CreationViewController: UIViewController
 {
     //MARK: - Outlets
@@ -140,4 +140,4 @@ extension CreationViewController : UITableViewDataSource
         return 1
     }
     
-}
+}*/

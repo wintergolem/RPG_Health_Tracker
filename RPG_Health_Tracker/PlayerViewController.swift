@@ -12,12 +12,12 @@ class PlayerViewController: UIViewController {
 
     //MARK: - Outlets
     @IBOutlet weak var healthTrackTableView: UITableView!
-    @IBOutlet weak var actionCollectionView: UICollectionView!
-    @IBOutlet weak var attackTypeSegCon: UISegmentedControl!
+    //moved @IBOutlet weak var actionCollectionView: UICollectionView!
+    //moved @IBOutlet weak var attackTypeSegCon: UISegmentedControl!
     @IBOutlet weak var actionValueCollectionView: UICollectionView!
     
     //MARK: - Properties
-    var actionTypeByte : UInt32 = UInt32(3)
+    //moved var actionTypeByte : UInt32 = UInt32(3)
     
     //MARK: - Methods
     override func viewDidLoad()
@@ -26,8 +26,8 @@ class PlayerViewController: UIViewController {
         
         //delegates and datasources
         healthTrackTableView.dataSource = self
-        actionCollectionView.dataSource = self
-        actionCollectionView.delegate = self
+        //moved actionCollectionView.dataSource = self
+        //moved actionCollectionView.delegate = self
         actionValueCollectionView.dataSource = self
         actionValueCollectionView.delegate = self
         
@@ -62,6 +62,7 @@ class PlayerViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    /* moved to stackview
     func determineAttackType() -> d20AttackType
     {
         switch attackTypeSegCon.selectedSegmentIndex
@@ -76,16 +77,16 @@ class PlayerViewController: UIViewController {
             return .DR
         }
         
-    }
+    }*/
     
     func addAction (value : Int)
     {
         //build damageType Class
         let damageType = DamageType()
-        damageType.damageByte = actionTypeByte
+        damageType.damageByte = CharacterManager.player.actionTypeByte
         damageType.damageTypeForDisplay.append("Not implemented yet")
         
-        let attackType : d20AttackType = determineAttackType()
+        let attackType : d20AttackType = CharacterManager.player.currentAttackType
         
         let action = Action20(newValue: value, counter: CharacterManager.player.grabActionNumber(), damageType: damageType)
         action.attackType = attackType
