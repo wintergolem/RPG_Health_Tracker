@@ -8,6 +8,7 @@
         <attribute name="currentHealth" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="destoryIfDepleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationMark" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="maxHealth" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="playerOwner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterEntity" inverseName="healthTracks" inverseEntity="CharacterEntity" syncable="YES"/>
         <relationship name="resistOwner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResistEntity" inverseName="ownedTrack" inverseEntity="ResistEntity" syncable="YES"/>
@@ -16,8 +17,8 @@
         <attribute name="attackType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="enabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="operation" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="typeByte" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="operation" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="typeByte" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="ownedTrack" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HealthTrackEntity" inverseName="resistOwner" inverseEntity="HealthTrackEntity" syncable="YES"/>
         <relationship name="playerOwner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterEntity" inverseName="resistances" inverseEntity="CharacterEntity" syncable="YES"/>
@@ -25,6 +26,6 @@
     <elements>
         <element name="CharacterEntity" positionX="-36" positionY="9" width="128" height="75"/>
         <element name="ResistEntity" positionX="0" positionY="45" width="128" height="165"/>
-        <element name="HealthTrackEntity" positionX="27" positionY="72" width="128" height="135"/>
+        <element name="HealthTrackEntity" positionX="27" positionY="72" width="128" height="150"/>
     </elements>
 </model>

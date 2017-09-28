@@ -27,6 +27,8 @@
 		3584973F1F30117900B5F70E /* accessorArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584973E1F30117900B5F70E /* accessorArray.swift */; };
 		358AE11E1F3558C000F96FBC /* DamageModCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AE11D1F3558C000F96FBC /* DamageModCreationViewController.swift */; };
 		358AE1201F355E9200F96FBC /* DamageModCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358AE11F1F355E9200F96FBC /* DamageModCell.swift */; };
+		3591AEC41F7C7EDC0033913D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3591AEC31F7C7EDC0033913D /* CoreDataManager.swift */; };
+		3591AEC61F7C837A0033913D /* CharacterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3591AEC51F7C837A0033913D /* CharacterBuilder.swift */; };
 		35A7E44C1F104C3F002D6582 /* d20Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A7E44B1F104C3F002D6582 /* d20Enums.swift */; };
 		35B202801F1D945900EE02C4 /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2027F1F1D945900EE02C4 /* CreationViewController.swift */; };
 		35B3AFE31F0DB46600C695C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3AFE21F0DB46600C695C9 /* AppDelegate.swift */; };
@@ -64,6 +66,8 @@
 		3584973E1F30117900B5F70E /* accessorArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = accessorArray.swift; sourceTree = "<group>"; };
 		358AE11D1F3558C000F96FBC /* DamageModCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DamageModCreationViewController.swift; sourceTree = "<group>"; };
 		358AE11F1F355E9200F96FBC /* DamageModCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DamageModCell.swift; sourceTree = "<group>"; };
+		3591AEC31F7C7EDC0033913D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		3591AEC51F7C837A0033913D /* CharacterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterBuilder.swift; sourceTree = "<group>"; };
 		35A7E44B1F104C3F002D6582 /* d20Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = d20Enums.swift; sourceTree = "<group>"; };
 		35B2027F1F1D945900EE02C4 /* CreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationViewController.swift; sourceTree = "<group>"; };
 		35B3AFDF1F0DB46600C695C9 /* RPG_Health_Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPG_Health_Tracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +208,7 @@
 				3581282F1F30FCC000CDB16D /* DamageType.swift */,
 				358128351F31367400CDB16D /* CharacterManager(debug).swift */,
 				354D0AE41F70AD8A00064DE4 /* DamageTypeCatalogued.swift */,
+				3591AEC51F7C837A0033913D /* CharacterBuilder.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				35B3AFE91F0DB46600C695C9 /* RPG_Health_Tracker.xcdatamodeld */,
+				3591AEC31F7C7EDC0033913D /* CoreDataManager.swift */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -336,6 +342,7 @@
 				3584973F1F30117900B5F70E /* accessorArray.swift in Sources */,
 				358128321F31345400CDB16D /* HealthTrackTableCell.swift in Sources */,
 				35B3AFE31F0DB46600C695C9 /* AppDelegate.swift in Sources */,
+				3591AEC61F7C837A0033913D /* CharacterBuilder.swift in Sources */,
 				3581833E1F26950600D6EA72 /* ResistanceTableViewCell.swift in Sources */,
 				358128341F31362F00CDB16D /* PlayerViewController.swift in Sources */,
 				35B3AFEB1F0DB46600C695C9 /* RPG_Health_Tracker.xcdatamodeld in Sources */,
@@ -349,6 +356,7 @@
 				35B3B0031F0DB79E00C695C9 /* d20ConstantStrings.swift in Sources */,
 				358128301F30FCC000CDB16D /* DamageType.swift in Sources */,
 				358AE1201F355E9200F96FBC /* DamageModCell.swift in Sources */,
+				3591AEC41F7C7EDC0033913D /* CoreDataManager.swift in Sources */,
 				35A7E44C1F104C3F002D6582 /* d20Enums.swift in Sources */,
 				352ED0D31F314AC6009999FB /* ActionCollectionViewCell.swift in Sources */,
 				354D0AE51F70AD8A00064DE4 /* DamageTypeCatalogued.swift in Sources */,
