@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CharacterEntity" representedClassName="CharacterEntity" syncable="YES" codeGenerationType="class">
+        <relationship name="healthTracks" toMany="YES" deletionRule="Nullify" destinationEntity="HealthTrackEntity" inverseName="playerOwner" inverseEntity="HealthTrackEntity" syncable="YES"/>
+        <relationship name="resistances" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ResistEntity" inverseName="playerOwner" inverseEntity="ResistEntity" syncable="YES"/>
+    </entity>
+    <entity name="HealthTrackEntity" representedClassName="HealthTrackEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="currentHealth" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="destoryIfDepleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="maxHealth" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="playerOwner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterEntity" inverseName="healthTracks" inverseEntity="CharacterEntity" syncable="YES"/>
+        <relationship name="resistOwner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResistEntity" inverseName="ownedTrack" inverseEntity="ResistEntity" syncable="YES"/>
+    </entity>
+    <entity name="ResistEntity" representedClassName="ResistEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="attackType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="enabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="operation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeByte" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="ownedTrack" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HealthTrackEntity" inverseName="resistOwner" inverseEntity="HealthTrackEntity" syncable="YES"/>
+        <relationship name="playerOwner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterEntity" inverseName="resistances" inverseEntity="CharacterEntity" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CharacterEntity" positionX="-36" positionY="9" width="128" height="75"/>
+        <element name="ResistEntity" positionX="0" positionY="45" width="128" height="165"/>
+        <element name="HealthTrackEntity" positionX="27" positionY="72" width="128" height="135"/>
+    </elements>
 </model>

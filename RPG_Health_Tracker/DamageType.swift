@@ -35,7 +35,7 @@ class DamageType
     
     func popFirst() -> Bool
     {
-        let returnBool : Bool = Bool(damageByte & UInt32(1) as NSNumber) //<- so ugly
+        let returnBool : Bool = Bool(truncating: damageByte & UInt32(1) as NSNumber) //<- so ugly
         damageByte = damageByte >> 1
         return returnBool
     }

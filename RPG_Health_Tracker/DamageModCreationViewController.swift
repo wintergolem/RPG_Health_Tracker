@@ -100,7 +100,7 @@ class DamageModCreationViewController: UIViewController {
         }
     }
     
-    func doneButtonAction()
+    @objc func doneButtonAction()
     {
         self.view.endEditing(true)
     }
@@ -144,7 +144,7 @@ class DamageModCreationViewController: UIViewController {
         self.present(alert, animated:  true, completion: nil)
     }
     
-    func textChanged(_ sender:UITextField)
+    @objc func textChanged(_ sender:UITextField)
     {
         if sender.tag == 0
         {

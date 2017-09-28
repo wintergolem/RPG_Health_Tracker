@@ -80,9 +80,9 @@ class Player
     func reorderMods()
     {
         resistanceList.array = resistanceList.array.sorted {
-            if $0.0.attackTypeWorksAgainst != $0.1.attackTypeWorksAgainst
+            if $0.attackTypeWorksAgainst != $1.attackTypeWorksAgainst
             {
-                if $0.0.attackTypeWorksAgainst == .DR
+                if $0.attackTypeWorksAgainst == .DR
                 {
                     return true
                 }
@@ -93,7 +93,7 @@ class Player
             }
             else
             {
-                return $0.0.value > $0.1.value
+                return $0.value > $1.value
             }
             
         }
