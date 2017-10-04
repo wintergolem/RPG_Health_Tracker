@@ -54,6 +54,7 @@ class AccessorArray<T>
     func popLast() -> T
     {
         return array.popLast()!
+        callWatchers()
     }
     //TODO: forEach
     

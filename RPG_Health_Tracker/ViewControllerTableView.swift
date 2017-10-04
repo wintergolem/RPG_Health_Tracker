@@ -223,6 +223,7 @@ extension CharacterSelectViewController: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         //load character
+        CharacterManager.player = characters[indexPath.row]
         changeScenes()
     }
 }
@@ -232,13 +233,17 @@ extension CharacterSelectViewController : UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         //core data class -> grab amount of characters
-        return 1
+        return characters.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Select") as! CharacterSelectCell
-        cell.nameLabel.text = "Tempt Character Name"
-        cell.healthLabel.text = "110/1000"
+        cell.nameLabel.text = characters[indexPath.row].displayName
+        cell.healthLabel.text = characters[indexPath.row].getHealthForDisplay(displayType: .AVAIL)
         return cell
+        
+        
     }
 }

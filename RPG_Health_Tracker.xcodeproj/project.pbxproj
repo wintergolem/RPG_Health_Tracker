@@ -43,6 +43,7 @@
 		35DD16191F3BE481004B75E8 /* Primitives.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DD16181F3BE481004B75E8 /* Primitives.swift */; };
 		35F5A1D81F266230006898BB /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5A1D71F266230006898BB /* Toolbar.swift */; };
 		35F5A1DA1F266ED8006898BB /* ViewControllerPickerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5A1D91F266ED8006898BB /* ViewControllerPickerViews.swift */; };
+		35FDF8A91F83084C00BC50E7 /* AddNewPlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35FDF8A81F83084C00BC50E7 /* AddNewPlayerCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		35DD16181F3BE481004B75E8 /* Primitives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primitives.swift; sourceTree = "<group>"; };
 		35F5A1D71F266230006898BB /* Toolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		35F5A1D91F266ED8006898BB /* ViewControllerPickerViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerPickerViews.swift; sourceTree = "<group>"; };
+		35FDF8A81F83084C00BC50E7 /* AddNewPlayerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddNewPlayerCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			children = (
 				35419A161F45275E00887538 /* CountingCell.xib */,
 				3555C51D1F47C2FC00C3E304 /* ActionCell.xib */,
+				35FDF8A81F83084C00BC50E7 /* AddNewPlayerCell.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35B3AFF01F0DB46600C695C9 /* LaunchScreen.storyboard in Resources */,
+				35FDF8A91F83084C00BC50E7 /* AddNewPlayerCell.xib in Resources */,
 				35B3AFED1F0DB46600C695C9 /* Assets.xcassets in Resources */,
 				35419A171F45275E00887538 /* CountingCell.xib in Resources */,
 				35B3AFE81F0DB46600C695C9 /* Main.storyboard in Resources */,

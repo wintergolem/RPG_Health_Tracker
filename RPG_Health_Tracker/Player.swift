@@ -10,6 +10,13 @@ import Foundation
 
 class Player
 {
+    //MARK: - General Properties
+    var displayName : String = "TempName"
+    var atMaxHealth : Bool
+    {
+        return mainHealthTrack.damageDone() == 0 &&
+        nonLethalTrack.damageDone() == 0
+    }
     //MARK: - Healthtrack properties
     var mainHealthTrack : HealthTrackd20 = HealthTrackd20(displayName: "main", health: 100, destroyOnceEmpty: false)
     var nonLethalTrack : HealthTrackd20 = HealthTrackd20(displayName: "nonLethal", health: 100, destroyOnceEmpty: false)
@@ -32,36 +39,43 @@ class Player
     
     
     //MARK: - Methods
-    init()
+    init( displayName: String , maxHealth : Int, _ testChar : Bool = false )
     {
+        self.displayName = displayName
+        mainHealthTrack.maxHealth = maxHealth
+        mainHealthTrack.currentHealth = maxHealth
+        nonLethalTrack.maxHealth = maxHealth
+        nonLethalTrack.currentHealth = maxHealth
+        //add watcher to reorder damage mods anytime array changes
         _ = resistanceList.addWatcher {
             self.reorderMods()
         }
-        
-        //add test extra healthtracks
-        _ = addHealthTrack(name: "AfterTest", maxHealth: 100, currentHealth: 100, type: .AFTER, destoryOnceEmpty: false)
-        _ = addHealthTrack(name: "BeforeTest", maxHealth: 100, type: .BEFORE, destoryOnceEmpty: false)
-        _ = addHealthTrack(name: "SeperateTest", maxHealth: 100, type: .SEPARATE)
-        
-        //add test resistances
-        //fire
-        let resistTemp : HealthResistenced20 = HealthResistenced20()
-        resistTemp.attackTypeWorksAgainst = .RESIST
-        resistTemp.displayName = "Fire Resist"
-        resistTemp.op = .subtraction
-        resistTemp.typeByte = UInt32(4)
-        resistTemp.value = 5
-        resistanceList.append(newValue: resistTemp)
-        
-        //slashing
-        let slashTemp : HealthResistenced20 = HealthResistenced20()
-        slashTemp.attackTypeWorksAgainst = .DR
-        slashTemp.displayName = "Slashing DR"
-        slashTemp.op = .subtraction
-        slashTemp.typeByte = UInt32(2)
-        slashTemp.value = 5
-        resistanceList.append(newValue: slashTemp)
-
+        if testChar
+        {
+            //add test extra healthtracks
+            _ = addHealthTrack(name: "AfterTest", maxHealth: 100, currentHealth: 100, type: .AFTER, destoryOnceEmpty: false)
+            _ = addHealthTrack(name: "BeforeTest", maxHealth: 100, type: .BEFORE, destoryOnceEmpty: false)
+            _ = addHealthTrack(name: "SeperateTest", maxHealth: 100, type: .SEPARATE)
+            
+            //add test resistances
+            //fire
+            let resistTemp : HealthResistenced20 = HealthResistenced20()
+            resistTemp.attackTypeWorksAgainst = .RESIST
+            resistTemp.displayName = "Fire Resist"
+            resistTemp.op = .subtraction
+            resistTemp.typeByte = UInt32(4)
+            resistTemp.value = 5
+            resistanceList.append(newValue: resistTemp)
+            
+            //slashing
+            let slashTemp : HealthResistenced20 = HealthResistenced20()
+            slashTemp.attackTypeWorksAgainst = .DR
+            slashTemp.displayName = "Slashing DR"
+            slashTemp.op = .subtraction
+            slashTemp.typeByte = UInt32(2)
+            slashTemp.value = 5
+            resistanceList.append(newValue: slashTemp)
+        }
     }
     
     func takeAction( action: Action20)
@@ -75,6 +89,7 @@ class Player
         {
             takeHeal(heal: action)
         }
+        actionList.append(newValue: action)
     }
     
     func reorderMods()
@@ -179,6 +194,7 @@ class Player
         
         let action = actionList.popLast()
         action.undo()
+        
     }
     
     func grabActionNumber() -> Int
@@ -203,10 +219,19 @@ class Player
         
         switch type {
         case .SEPARATE:
+            track.addWatcher {
+                self.separateHealthTracks.callWatchers()
+            }
             separateHealthTracks.append(newValue: track)
         case .AFTER:
+            track.addWatcher {
+            self.afterHealthTracks.callWatchers()
+        }
             afterHealthTracks.append(newValue: track)
         case .BEFORE:
+            track.addWatcher {
+                self.beforeHealthTracks.callWatchers()
+            }
             beforeHealthTracks.append(newValue: track)
         }
         return track
@@ -252,4 +277,5 @@ class Player
         }
         return returnString
     }
+    
 }

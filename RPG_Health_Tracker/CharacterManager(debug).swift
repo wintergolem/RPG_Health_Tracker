@@ -10,7 +10,7 @@ import Foundation
 
 class CharacterManager
 {
-    static var player : Player = Player()
+    static var player : Player = Player(displayName: "temmpName", maxHealth: 0)
     
     init()
     {

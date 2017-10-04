@@ -51,22 +51,23 @@ class HealthTrackd20
     //MARK: - Damage
     func takeDamage( damage : Action20) -> Int //return unused amount, default to zero if all is used
     {
+        let damageValue = damage.value
         if currentHealth < damage.value
         {
-            let unused = damage.value - currentHealth
+            let unused = damageValue - currentHealth
             currentHealth = 0
             damage.undoWatchers.append
                 {
-                self.undoAction(value: damage.value - unused, actionWasHeal: false)
+                self.undoAction(value: damageValue - unused, actionWasHeal: false)
             }
             return unused
         }
         else
         {
-            currentHealth -= damage.value
+            currentHealth -= damageValue
             damage.undoWatchers.append
                 {
-                    self.undoAction(value: damage.value, actionWasHeal: false)
+                    self.undoAction(value: damageValue, actionWasHeal: false)
             }
             return 0
         }
@@ -75,7 +76,8 @@ class HealthTrackd20
     //MARK: - Healing
     func healDamage( heal : Action20)
     {
-        currentHealth.addWithCeiling( heal.value , maxHealth)
+        let healValue = heal.value
+        currentHealth.addWithCeiling( healValue , maxHealth)
     }
     
     func checkHealExceed(amount : Int) -> Bool
@@ -94,6 +96,7 @@ class HealthTrackd20
         {
             currentHealth += value
         }
+        //callWatchers()
     }
     
     //MARK: - Display

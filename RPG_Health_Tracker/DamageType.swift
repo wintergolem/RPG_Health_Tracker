@@ -10,6 +10,9 @@ import Foundation
 
 class DamageType
 {
+    //1.Damage OR Heal
+    //2.Lethal OR Nonlethal
+    //3+Rest
     var damageTypeForDisplay : [String] = []
     var damageByte : UInt32 = UInt32()
     

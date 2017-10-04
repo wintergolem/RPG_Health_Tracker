@@ -13,12 +13,12 @@ class CharacterBuilder
     //MARK: Singleton
     static let singleton : CharacterBuilder = CharacterBuilder()
     
-    func buildPlayers( entities : [CharacterEntity]) -> [Player]
+    static func buildPlayers( entities : [CharacterEntity]) -> [Player]
     {
         var returnArray : [Player] = [Player]()
         for character in entities
         {
-            let char : Player = Player()
+            let char : Player = Player(displayName: character.displayName! , maxHealth: 0)//max Health will be overwritten
             //action tracking
             char.actionCount = 0 //actionCounter resets whenever we are in a state where this runs
             //transfer healthTracks
@@ -63,7 +63,7 @@ class CharacterBuilder
         return returnArray
     }
     
-    func buildTrack( entity : HealthTrackEntity ) -> HealthTrackd20
+    static func buildTrack( entity : HealthTrackEntity ) -> HealthTrackd20
     {
         let returnTrack = HealthTrackd20(
             displayName: entity.displayName!,

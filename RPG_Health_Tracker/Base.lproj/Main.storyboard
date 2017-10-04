@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tfx-Ci-rtq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tfx-Ci-rtq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -90,7 +90,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="323" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hzh-jH-UkA" id="7vd-UW-cd1">
-                                                            <rect key="frame" x="0.0" y="0.0" width="323" height="44"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="323" height="43.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Available:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKN-Zs-TeO">
@@ -136,24 +136,51 @@
                                                 <rect key="frame" x="220" y="62" width="22" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </button>
+                                            <collectionView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="naA-Yr-yLn">
+                                                <rect key="frame" x="4" y="432" width="335" height="318"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="ZYq-O6-nGQ">
+                                                    <size key="itemSize" width="50" height="50"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells/>
+                                            </collectionView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIT-35-CvV">
+                                                <rect key="frame" x="261" y="360" width="74" height="49"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Undo"/>
+                                                <connections>
+                                                    <action selector="undoButtonPress:" destination="pay-Xq-jzz" eventType="touchUpInside" id="uqa-uk-qpy"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUl-io-UD8">
+                                                <rect key="frame" x="12" y="360" width="79" height="49"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Max Heal"/>
+                                                <connections>
+                                                    <action selector="maxHealButtonPress:" destination="pay-Xq-jzz" eventType="touchUpInside" id="Y8K-A1-hM3"/>
+                                                </connections>
+                                            </button>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yXK-Ch-zyo">
+                                                <rect key="frame" x="99" y="370" width="154" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <segments>
+                                                    <segment title="Damage"/>
+                                                    <segment title="Heal"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="damageOrHealSegConChanged:" destination="pay-Xq-jzz" eventType="valueChanged" id="iyf-Lf-G4i"/>
+                                                </connections>
+                                            </segmentedControl>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="960" id="jD6-Vr-Xwp"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="naA-Yr-yLn">
-                                        <rect key="frame" x="4" y="354" width="335" height="318"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="ZYq-O6-nGQ">
-                                            <size key="itemSize" width="50" height="50"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells/>
-                                    </collectionView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="GT8-lG-0f4" firstAttribute="top" secondItem="5HF-AD-EVk" secondAttribute="top" id="EEy-di-6kp"/>
@@ -175,8 +202,11 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
+                        <outlet property="DamageOrHealSegCon" destination="yXK-Ch-zyo" id="jZ1-29-HTb"/>
                         <outlet property="actionValueCollectionView" destination="naA-Yr-yLn" id="Jdz-88-aK0"/>
                         <outlet property="healthTrackTableView" destination="cDt-O1-ILh" id="dHD-gk-7FT"/>
+                        <outlet property="maxHealButton" destination="zUl-io-UD8" id="L8X-qs-Wsn"/>
+                        <outlet property="undoButton" destination="EIT-35-CvV" id="5JL-Ew-V7N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UEc-IX-155" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -248,13 +278,13 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eSx-xb-QNH">
-                                                                    <rect key="frame" x="11" y="31" width="51" height="31"/>
+                                                                    <rect key="frame" x="11" y="39" width="51" height="31"/>
                                                                     <connections>
                                                                         <action selector="activeSwitchChanged:" destination="ugY-dU-nW9" eventType="valueChanged" id="I1t-tD-GR9"/>
                                                                     </connections>
                                                                 </switch>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nonlethal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RY-wh-Mmg">
-                                                                    <rect key="frame" x="0.0" y="7" width="70" height="21"/>
+                                                                    <rect key="frame" x="0.0" y="-1" width="70" height="37"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -314,7 +344,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="335" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dbF-LY-fYr" id="at4-4F-3Nw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRJ-GN-qeJ">
@@ -428,13 +458,13 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aBa-bl-RSb">
-                                                                    <rect key="frame" x="11" y="31" width="51" height="31"/>
+                                                                    <rect key="frame" x="11" y="39" width="51" height="31"/>
                                                                     <connections>
                                                                         <action selector="activeSwitchChanged:" destination="lUl-JU-SCk" eventType="valueChanged" id="x7L-7w-x9v"/>
                                                                     </connections>
                                                                 </switch>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nonlethal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsA-09-PIS">
-                                                                    <rect key="frame" x="0.0" y="7" width="70" height="21"/>
+                                                                    <rect key="frame" x="0.0" y="-1" width="70" height="37"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -543,7 +573,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" tableViewCell="Pjc-mW-gpP" id="F08-Ny-AaH">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Character Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38g-uA-spJ">
@@ -570,6 +600,14 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYu-lg-5Mu">
+                                <rect key="frame" x="16" y="92" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add New Character"/>
+                                <connections>
+                                    <action selector="AddNewCharacterButtonPressed:" destination="jim-H0-4Wc" eventType="touchUpInside" id="UoW-vJ-FBq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -580,7 +618,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="POj-a7-EeW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-54" y="-642"/>
+            <point key="canvasLocation" x="-55.200000000000003" y="-642.72863568215894"/>
         </scene>
         <!--Character Page View Controller-->
         <scene sceneID="NW5-vm-1qz">
@@ -598,7 +636,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Tfx-Ci-rtq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9uE-XD-UyZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -616,7 +654,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6zN-ee-c24" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ABI-Vw-ACr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

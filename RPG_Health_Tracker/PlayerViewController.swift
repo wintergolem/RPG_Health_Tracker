@@ -12,12 +12,10 @@ class PlayerViewController: UIViewController {
 
     //MARK: - Outlets
     @IBOutlet weak var healthTrackTableView: UITableView!
-    //moved @IBOutlet weak var actionCollectionView: UICollectionView!
-    //moved @IBOutlet weak var attackTypeSegCon: UISegmentedControl!
     @IBOutlet weak var actionValueCollectionView: UICollectionView!
-    
-    //MARK: - Properties
-    //moved var actionTypeByte : UInt32 = UInt32(3)
+    @IBOutlet weak var undoButton: UIButton!
+    @IBOutlet weak var DamageOrHealSegCon: UISegmentedControl!
+    @IBOutlet weak var maxHealButton: UIButton!
     
     //MARK: - Methods
     override func viewDidLoad()
@@ -26,11 +24,9 @@ class PlayerViewController: UIViewController {
         
         //delegates and datasources
         healthTrackTableView.dataSource = self
-        //moved actionCollectionView.dataSource = self
-        //moved actionCollectionView.delegate = self
         actionValueCollectionView.dataSource = self
         actionValueCollectionView.delegate = self
-        
+        //register xib to collectionView
         let valueNib = UINib(nibName: "CountingCell", bundle: nil)
         actionValueCollectionView.register(valueNib, forCellWithReuseIdentifier: "Count")
         actionValueCollectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -50,6 +46,8 @@ class PlayerViewController: UIViewController {
         _ = CharacterManager.player.separateHealthTracks.addWatcher {
             self.healthTrackTableView.reloadData()
         }
+        //disable UI
+        checkUiStatus()
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,23 +59,6 @@ class PlayerViewController: UIViewController {
     {
         self.view.endEditing(true)
     }
-    
-    /* moved to stackview
-    func determineAttackType() -> d20AttackType
-    {
-        switch attackTypeSegCon.selectedSegmentIndex
-        {
-        case 0:
-            return .DR
-        case 1:
-            return .RESIST
-        case 2:
-            return .NONE
-        default:
-            return .DR
-        }
-        
-    }*/
     
     func addAction (value : Int)
     {
@@ -91,7 +72,28 @@ class PlayerViewController: UIViewController {
         let action = Action20(newValue: value, counter: CharacterManager.player.grabActionNumber(), damageType: damageType)
         action.attackType = attackType
         CharacterManager.player.takeAction(action: action)
+        checkUiStatus()
     }
     
+    func checkUiStatus()
+    {
+        undoButton.isEnabled = CharacterManager.player.actionList.count != 0
+        maxHealButton.isEnabled = CharacterManager.player.atMaxHealth
+    }
+    
+    //MARK: - Actions
+    @IBAction func undoButtonPress(_ sender: UIButton)
+    {
+        CharacterManager.player.undoLastAction()
+        checkUiStatus()
+    }
+    @IBAction func maxHealButtonPress(_ sender: UIButton)
+    {
+        checkUiStatus()
+    }
+    @IBAction func damageOrHealSegConChanged(_ sender: UISegmentedControl)
+    {
+        CharacterManager.player.applyTypeChange(typeChange: 0)
+    }
     
 }

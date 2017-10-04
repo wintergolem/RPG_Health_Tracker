@@ -22,7 +22,7 @@ class CoreDataManager
     //MARK: Loading
     func loadPlayers() -> [Player]
     {
-        var players : [CharacterEntity]
+        var players : [CharacterEntity] = [CharacterEntity]()
         let request : NSFetchRequest<CharacterEntity> = CharacterEntity.fetchRequest()
         
         do{
@@ -37,12 +37,12 @@ class CoreDataManager
             //TODO add error messaging
         }
         
-        return players
+        return CharacterBuilder.buildPlayers(entities: players)
     }
     
     lazy var persistentContainer : NSPersistentContainer =
         {
-            let container = NSPersistentContainer(name: "TextAdventure")
+            let container = NSPersistentContainer(name: "RPG_Health_Tracker")
             container.loadPersistentStores(completionHandler: { (storeDescription, error) in
                 if let error = error as NSError? {
                     fatalError("Unresolved error - \(error) , \(error.userInfo)")
