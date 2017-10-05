@@ -10,6 +10,7 @@ import Foundation
 
 class HealthResistenced20
 {
+    //MARK: - Properties
     var enabled: Bool = true
     var displayName : String = "UnNamed"
     var healthTrack : HealthTrackd20?
@@ -21,7 +22,8 @@ class HealthResistenced20
     {
         return "Performed operation: \(op) \(value)"
     }
-    
+    var entity : ResistEntity = CoreDataManager.singleton.grabResistEntity()
+    //MARK: - Methods
     init() {}
     
     func modifyDamage ( damage : Action20) -> Bool
@@ -71,5 +73,23 @@ class HealthResistenced20
         case .mod:
             return damageValue % value
         }
+    }
+    
+    func toEntity() -> ResistEntity
+    {
+        //let entity = CoreDataManager.singleton.grabResistEntity()
+        entity.attackType = attackTypeWorksAgainst.rawValue
+        entity.displayName = displayName
+        entity.enabled = enabled
+        entity.operation = op.toString()
+        entity.typeByte = Int32(typeByte)
+        entity.value = Int16(value)
+        
+        if( healthTrack != nil )
+        {
+            entity.ownedTrack = healthTrack?.toEntity()
+        }
+        
+        return entity
     }
 }

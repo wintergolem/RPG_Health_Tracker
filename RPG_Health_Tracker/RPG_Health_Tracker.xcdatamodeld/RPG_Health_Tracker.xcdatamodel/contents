@@ -18,7 +18,7 @@
         <attribute name="attackType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="enabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="operation" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="operation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typeByte" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="ownedTrack" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HealthTrackEntity" inverseName="resistOwner" inverseEntity="HealthTrackEntity" syncable="YES"/>

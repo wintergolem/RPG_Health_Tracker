@@ -18,8 +18,8 @@ class Player
         nonLethalTrack.damageDone() == 0
     }
     //MARK: - Healthtrack properties
-    var mainHealthTrack : HealthTrackd20 = HealthTrackd20(displayName: "main", health: 100, destroyOnceEmpty: false)
-    var nonLethalTrack : HealthTrackd20 = HealthTrackd20(displayName: "nonLethal", health: 100, destroyOnceEmpty: false)
+    var mainHealthTrack : HealthTrackd20 = HealthTrackd20(displayName: "main", health: 100, destroyOnceEmpty: false , locationMark: 00)
+    var nonLethalTrack : HealthTrackd20 = HealthTrackd20(displayName: "nonLethal", health: 100, destroyOnceEmpty: false, locationMark: 01)
     var beforeHealthTracks : AccessorArray<HealthTrackd20> = AccessorArray<HealthTrackd20>()
     var afterHealthTracks : AccessorArray<HealthTrackd20> = AccessorArray<HealthTrackd20>()
     var separateHealthTracks : AccessorArray<HealthTrackd20> = AccessorArray<HealthTrackd20>()
@@ -36,10 +36,11 @@ class Player
     //Mark: - Other properties
     //moved var damageTypeList : AccessorArray = AccessorArray<String>()
     var currentAttackType : d20AttackType = .NONE
+    var entity : CharacterEntity?
     
     
     //MARK: - Methods
-    init( displayName: String , maxHealth : Int, _ testChar : Bool = false )
+    init( displayName: String , maxHealth : Int , loading : Bool = false , _ testChar : Bool = false )
     {
         self.displayName = displayName
         mainHealthTrack.maxHealth = maxHealth
@@ -53,9 +54,9 @@ class Player
         if testChar
         {
             //add test extra healthtracks
-            _ = addHealthTrack(name: "AfterTest", maxHealth: 100, currentHealth: 100, type: .AFTER, destoryOnceEmpty: false)
+            _ = addHealthTrack(name: "AfterTest", maxHealth: 100, currentHealth: 100, type: .AFTER, destoryOnceEmpty: false )
             _ = addHealthTrack(name: "BeforeTest", maxHealth: 100, type: .BEFORE, destoryOnceEmpty: false)
-            _ = addHealthTrack(name: "SeperateTest", maxHealth: 100, type: .SEPARATE)
+            _ = addHealthTrack(name: "SeperateTest", maxHealth: 100, type: .SEPARATE )
             
             //add test resistances
             //fire
@@ -75,6 +76,14 @@ class Player
             slashTemp.typeByte = UInt32(2)
             slashTemp.value = 5
             resistanceList.append(newValue: slashTemp)
+        }
+        else if loading == false
+        {
+            entity = CoreDataManager.singleton.grabPlayerEntity()
+            entity?.displayName = displayName
+            entity?.addToHealthTracks(mainHealthTrack.toEntity())
+            entity?.addToHealthTracks(nonLethalTrack.toEntity())
+            
         }
     }
     
@@ -111,6 +120,28 @@ class Player
                 return $0.value > $1.value
             }
             
+        }
+    }
+    
+    func save()
+    {
+        _ = mainHealthTrack.toEntity()
+        _ = nonLethalTrack.toEntity()
+        for track in beforeHealthTracks.array
+        {
+            _ = track.toEntity()
+        }
+        for track in afterHealthTracks.array
+        {
+            _ = track.toEntity()
+        }
+        for track in separateHealthTracks.array
+        {
+            _ = track.toEntity()
+        }
+        for res in resistanceList.array
+        {
+            _ = res.toEntity()
         }
     }
     //MARK: - Damage
@@ -211,7 +242,7 @@ class Player
     
     func addHealthTrack( name : String , maxHealth : Int , currentHealth : Int = -1 , type : d20TrackType , destoryOnceEmpty : Bool = false) -> HealthTrackd20
     {
-        let track = HealthTrackd20(displayName: name, health: maxHealth, destroyOnceEmpty: destoryOnceEmpty)
+        let track = HealthTrackd20(displayName: name, health: maxHealth, destroyOnceEmpty: destoryOnceEmpty, locationMark: 00)
         if currentHealth != -1
         {
             track.currentHealth = currentHealth
@@ -219,28 +250,37 @@ class Player
         
         switch type {
         case .SEPARATE:
+            track.locationMark = 30
             track.addWatcher {
                 self.separateHealthTracks.callWatchers()
             }
             separateHealthTracks.append(newValue: track)
         case .AFTER:
+            track.locationMark = 20
             track.addWatcher {
             self.afterHealthTracks.callWatchers()
         }
             afterHealthTracks.append(newValue: track)
         case .BEFORE:
+            track.locationMark = 10
             track.addWatcher {
                 self.beforeHealthTracks.callWatchers()
             }
             beforeHealthTracks.append(newValue: track)
         }
+        entity?.addToHealthTracks(track.toEntity())
         return track
     }
     
-    //Mark: - Resistance
+    //MARK: - Resistance
     func applyTypeChange( typeChange : Int )
     {
         actionTypeByte = actionTypeByte ^ UInt32(1 << typeChange)
+    }
+    func addResist( resist : HealthResistenced20)
+    {
+        entity?.addToResistances(resist.toEntity())
+        resistanceList.append(newValue: resist)
     }
     
     //MARK: - Display

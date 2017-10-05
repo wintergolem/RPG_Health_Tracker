@@ -13,7 +13,7 @@ enum d20HealthReturnType
     case FULL , LETHAL , AVAIL , SINGLE , DAMAGEDONE , NONLETHAL
 }
 
-enum d20ResistanceOperations : Character
+enum d20ResistanceOperations : String
 {
     case addition = "+" , subtraction = "-"
     case multiplication = "*" , division = "/" , mod = "%"
@@ -51,7 +51,7 @@ enum d20TrackType
     case SEPARATE , BEFORE , AFTER
 }
 
-enum d20AttackType
+enum d20AttackType : String
 {
-    case DR , RESIST , NONE
+    case DR = "DR", RESIST = "RESIST" , NONE = "NONE"
 }

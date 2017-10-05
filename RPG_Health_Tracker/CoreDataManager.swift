@@ -34,6 +34,7 @@ class CoreDataManager
         }
         catch
         {
+            print("Error with request: \(error)")
             //TODO add error messaging
         }
         
@@ -66,6 +67,18 @@ class CoreDataManager
         }
     }
     
+    func grabPlayerEntity() -> CharacterEntity
+    {
+        return CharacterEntity(context: persistentContainer.viewContext)
+    }
+    func grabTrackEntity() -> HealthTrackEntity
+    {
+        return HealthTrackEntity(context: persistentContainer.viewContext)
+    }
+    func grabResistEntity() -> ResistEntity
+    {
+        return ResistEntity(context: persistentContainer.viewContext)
+    }
     //MARK: Deleting
     func deleteEntity( entity: NSManagedObject)
     {

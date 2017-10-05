@@ -18,7 +18,7 @@ class CharacterBuilder
         var returnArray : [Player] = [Player]()
         for character in entities
         {
-            let char : Player = Player(displayName: character.displayName! , maxHealth: 0)//max Health will be overwritten
+            let char : Player = Player(displayName: character.displayName! , maxHealth: 0 , loading: true)//max Health will be overwritten
             //action tracking
             char.actionCount = 0 //actionCounter resets whenever we are in a state where this runs
             //transfer healthTracks
@@ -31,11 +31,11 @@ class CharacterBuilder
                     char.mainHealthTrack = buildTrack(entity: track)
                 case 1:
                     char.nonLethalTrack = buildTrack(entity: track)
-                case 2:
+                case 10:
                     char.beforeHealthTracks.append(newValue: buildTrack(entity: track))
-                case 3:
+                case 20:
                     char.afterHealthTracks.append(newValue: buildTrack(entity: track))
-                case 4:
+                case 30:
                     char.separateHealthTracks.append(newValue: buildTrack(entity: track))
                 default:
                     print("Error determining track - \(track.locationMark) is not a valid option")
@@ -48,14 +48,18 @@ class CharacterBuilder
                 let resist = HealthResistenced20()
                 resist.enabled = resistEnt.enabled
                 resist.displayName = resistEnt.displayName!
-                resist.healthTrack = buildTrack(entity: resistEnt.ownedTrack!)
+                if resist.healthTrack != nil
+                {
+                    resist.healthTrack = char.separateHealthTracks[0]
+                }
                 resist.typeByte = UInt32(resistEnt.typeByte)
                 resist.value = Int(resistEnt.value)
-                resist.op = d20ResistanceOperations.getValueFromInt( Int(resistEnt.operation) )
+                resist.attackTypeWorksAgainst = d20AttackType(rawValue: resistEnt.attackType!)!
+                resist.op = d20ResistanceOperations(rawValue: resistEnt.operation!)!
                 
-                char.resistanceList.append(newValue: resist)
+                char.addResist(resist: resist)
             }
-            
+            char.entity = character
             
             returnArray.append(char)
         }
@@ -68,7 +72,7 @@ class CharacterBuilder
         let returnTrack = HealthTrackd20(
             displayName: entity.displayName!,
             health: Int(entity.maxHealth),
-            destroyOnceEmpty: entity.destoryIfDepleted)
+            destroyOnceEmpty: entity.destoryIfDepleted , locationMark: Int(entity.locationMark))
         returnTrack._currentHealth = Int(entity.currentHealth)
         return returnTrack
     }

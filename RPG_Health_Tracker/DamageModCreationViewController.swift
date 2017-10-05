@@ -28,7 +28,7 @@ class DamageModCreationViewController: UIViewController {
         newMod.typeByte = actionTypeByte
         newMod.displayName = modNameField.text!
         newMod.op = activeOperation
-        newMod.attackTypeWorksAgainst = activeAttackType
+        newMod.attackTypeWorksAgainst = resistTypeSegCon.selectedSegmentIndex == 0 ? .DR : .RESIST
         newMod.value = Int(modValueField.text!)!
         if addTrackSeg.isOn
         {
@@ -38,7 +38,7 @@ class DamageModCreationViewController: UIViewController {
         }
         else
         {
-            CharacterManager.player.resistanceList.append(newValue: newMod)
+            CharacterManager.player.addResist(resist: newMod)
         }
     }
     
@@ -117,7 +117,7 @@ class DamageModCreationViewController: UIViewController {
         let saveButton = UIAlertAction(title: "Save", style: .default, handler:
         { (action: UIAlertAction!) in
             newMod.healthTrack = CharacterManager.player.addHealthTrack(name: (alert.textFields?[0].text)!, maxHealth: Int((alert.textFields?[1].text)!)!, type: .SEPARATE)
-            CharacterManager.player.resistanceList.append(newValue: newMod)
+            CharacterManager.player.addResist(resist: newMod)
         })
         //configure textfields
         alert.addTextField { (textField: UITextField!) in
