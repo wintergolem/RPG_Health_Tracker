@@ -31,10 +31,11 @@ class Player
     
     //MARK: - Resistance properties
     var resistanceList : AccessorArray = AccessorArray<HealthResistenced20>()
-    var actionTypeByte : UInt32 = UInt32(3)
+    var energyByte : UInt32 = UInt32(3)
+    var physicalByte : UInt32 = UInt32(3)
+    var bypassByte : UInt32 = UInt32(0)
     
     //Mark: - Other properties
-    //moved var damageTypeList : AccessorArray = AccessorArray<String>()
     var currentAttackType : d20AttackType = .NONE
     var entity : CharacterEntity?
     
@@ -73,7 +74,7 @@ class Player
             slashTemp.attackTypeWorksAgainst = .DR
             slashTemp.displayName = "Slashing DR"
             slashTemp.op = .subtraction
-            slashTemp.typeByte = UInt32(2)
+            slashTemp.typeByte = UInt32(4)
             slashTemp.value = 5
             resistanceList.append(newValue: slashTemp)
         }
@@ -196,7 +197,9 @@ class Player
             }
             afterHealthTracks.callWatchers()
         }
-
+        
+        //send extra back to main track
+        mainHealthTrack.takeExcess(damage: damage)
     }
     
     func doDamage( track : HealthTrackd20 , damage : Action20)
@@ -215,6 +218,14 @@ class Player
         {
             mainHealthTrack.healDamage(heal: heal)
         }
+    }
+    
+    func maxHeal()
+    {
+        let action = Action20(newValue: nonLethalTrack.damageDone(), counter: grabActionNumber(), damageType: DamageType())
+        nonLethalTrack.healDamage(heal: action)
+        action.value = mainHealthTrack.damageDone()
+        mainHealthTrack.healDamage(heal: action)
     }
     //MARK: - Undo's
     func undoLastAction()
@@ -271,18 +282,54 @@ class Player
         entity?.addToHealthTracks(track.toEntity())
         return track
     }
+    func moveTrack( sourceTrack : d20TrackType , sourceIndex : Int , destTrack : d20TrackType , destIndex : Int)
+    {
+        let sourceTrackArray = enumToTrack(value: sourceTrack)
+        let track = sourceTrackArray[sourceIndex]
+        sourceTrackArray.remove(index: sourceIndex)
+        let destTrackArray : AccessorArray<HealthTrackd20> = enumToTrack(value: destTrack)
+        destTrackArray.insert(newValue: track , index: destIndex)
+    }
+    func enumToTrack( value : d20TrackType) -> AccessorArray<HealthTrackd20>
+    {
+        switch value {
+        case .AFTER:
+            return afterHealthTracks
+        case .BEFORE:
+            return beforeHealthTracks
+        case .SEPARATE:
+            return separateHealthTracks
+        }
+    }
     
     //MARK: - Resistance
     func applyTypeChange( typeChange : Int )
     {
-        actionTypeByte = actionTypeByte ^ UInt32(1 << typeChange)
+        switch currentAttackType {
+        case .DR:
+            physicalByte = physicalByte ^ UInt32(1 << typeChange)
+        case .RESIST:
+            energyByte = energyByte ^ UInt32(1 << typeChange)
+        case .NONE:
+            bypassByte = bypassByte ^ UInt32(1 << typeChange)
+        }
     }
     func addResist( resist : HealthResistenced20)
     {
         entity?.addToResistances(resist.toEntity())
         resistanceList.append(newValue: resist)
     }
-    
+    func currentResistanceByte() -> UInt32
+    {
+        switch currentAttackType {
+        case .DR:
+            return physicalByte
+        case .RESIST:
+            return energyByte
+        case .NONE:
+            return bypassByte
+        }
+    }
     //MARK: - Display
     func getHealthForDisplay( displayType : d20HealthReturnType) -> String
     {

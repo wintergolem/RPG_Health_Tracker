@@ -5,7 +5,7 @@
 //  Created by steven Hoover on 7/19/17.
 //  Copyright © 2017 steven Hoover. All rights reserved.
 //
-
+/*
 import UIKit
 
 class CharacterPageViewController: UIPageViewController {
@@ -23,7 +23,7 @@ class CharacterPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
-        setViewControllers([ orderedViewControllers[1] ], direction: .forward, animated: true, completion: nil)
+        //setViewControllers([ orderedViewControllers[1] ], direction: .forward, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,3 +91,4 @@ extension CharacterPageViewController: UIPageViewControllerDataSource
         return firstViewControllerIndex
     }
 }
+*/

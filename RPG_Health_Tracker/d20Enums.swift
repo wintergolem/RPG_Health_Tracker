@@ -46,9 +46,9 @@ enum d20ResistanceOperations : String
 }
 
 
-enum d20TrackType
+enum d20TrackType : Int
 {
-    case SEPARATE , BEFORE , AFTER
+    case SEPARATE = 2 , BEFORE = 0, AFTER = 1
 }
 
 enum d20AttackType : String

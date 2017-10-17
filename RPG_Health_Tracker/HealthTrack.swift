@@ -78,6 +78,14 @@ class HealthTrackd20
         }
     }
     
+    func takeExcess( damage : Action20)
+    {
+        currentHealth -= damage.value
+        damage.undoWatchers.append {
+            self.undoAction(value: damage.value, actionWasHeal: false)
+        }
+    }
+    
     //MARK: - Healing
     func healDamage( heal : Action20)
     {
@@ -139,6 +147,7 @@ class HealthTrackd20
     
     func damageDone() -> Int
     {
+        //print("\(displayName) = \(_maxHealth - _currentHealth)")
         return _maxHealth - _currentHealth
     }
     

@@ -12,6 +12,7 @@ import UIKit
 
 extension PlayerViewController : UITableViewDataSource
 {
+    
     func numberOfSections(in tableView: UITableView) -> Int
     {
         var returnInt = 1 //main health track
@@ -112,6 +113,50 @@ extension PlayerViewController : UITableViewDataSource
             cell.displayNameLabel.text = CharacterManager.player.separateHealthTracks[indexPath.row].displayName
             cell.healthDisplayLabel.text = CharacterManager.player.separateHealthTracks[indexPath.row].getHealthTrait(trait: .FULL)
         }
+    }
+    
+    //reordering cells
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool
+    {
+        //determine if cell is in "main" section, if yes, return false, else return true
+        if  indexPath.section == 0
+        {
+            return false
+        }
+        return true
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
+    {
+        //bounce the idea of moving a section 1+ to section 0
+        if destinationIndexPath.section == 0 && sourceIndexPath.section == 0
+        {
+            return
+        }
+        let sourceTrack : d20TrackType = determineTrack(section: sourceIndexPath.section)
+        let destTrack : d20TrackType = determineTrack(section: destinationIndexPath.section)
+        
+        player.moveTrack(
+            sourceTrack: sourceTrack, sourceIndex: sourceIndexPath.row,
+            destTrack: destTrack, destIndex: destinationIndexPath.row)
+    }
+    
+    func determineTrack( section : Int) -> d20TrackType
+    {
+        var returnValue = 0
+        if section == 1 && CharacterManager.player.beforeHealthTracks.count > 0
+        {
+            returnValue = 0
+        }
+        else if section == 1 && CharacterManager.player.beforeHealthTracks.count < 0 || section == 2 && CharacterManager.player.afterHealthTracks.count > 0
+        {
+            returnValue = 1
+        }
+        else
+        {
+            returnValue = 2
+        }
+        
+        return d20TrackType(rawValue: returnValue)!
     }
 }
 

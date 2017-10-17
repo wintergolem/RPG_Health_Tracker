@@ -57,7 +57,16 @@ class AccessorArray<T>
         callWatchers()
     }
     //TODO: forEach
-    
+    func insert( newValue : T , index : Int)
+    {
+        array.insert(newValue, at: index)
+        callWatchers()
+    }
+    func remove(index : Int)
+    {
+        array.remove(at: index)
+        callWatchers()
+    }
     subscript(index : Int) -> T
     {
         if(index >= array.count)

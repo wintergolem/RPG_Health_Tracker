@@ -35,7 +35,7 @@ class CharacterSelectViewController: UIViewController {
     
     func changeScenes()
     {
-        guard let vs = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainView") as? CharacterPageViewController else
+        guard let vs = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainView") as? UITabBarController else
         {
             print("Failed to create viewController")
             return

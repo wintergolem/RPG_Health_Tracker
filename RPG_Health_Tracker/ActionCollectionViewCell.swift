@@ -30,6 +30,6 @@ class ActionCollectionViewCell: UICollectionViewCell
         {
             titleLabel.text = inactiveText
         }
-        CharacterManager.player.applyTypeChange( typeChange: value )
+        CharacterManager.player.applyTypeChange( typeChange: value + 1 )
     }
 }

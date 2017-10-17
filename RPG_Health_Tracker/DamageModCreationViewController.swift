@@ -8,10 +8,10 @@
 
 import UIKit
 
-class DamageModCreationViewController: UIViewController {
-
-    //MARK: - Outlets
+class DamageModCreationViewController: UIViewController
+{
     
+    //MARK: - Outlets
     @IBOutlet weak var modNameField: UITextField!
     @IBOutlet weak var modValueField: UITextField!
     @IBOutlet weak var resistTypeSegCon: UISegmentedControl!
@@ -54,10 +54,12 @@ class DamageModCreationViewController: UIViewController {
         }
         damageTypeTable.reloadData()
     }
+    
     //MARK: - Properities
     var actionTypeByte : UInt32 = UInt32()
     var activeOperation : d20ResistanceOperations = d20ResistanceOperations.subtraction
     var activeAttackType : d20AttackType = .DR
+    var activeNumberOfItems : Int = 0
     
     //MARK: Lazy Properities
     lazy var doneToolBar : UIToolbar = UIToolbar.doneToolBar(#selector(self.doneButtonAction), target: self)
@@ -80,7 +82,9 @@ class DamageModCreationViewController: UIViewController {
         //setup damageTypeTable
         damageTypeTable.dataSource = self
         damageTypeTable.delegate = self
-        
+        let addNib = UINib(nibName: "AddCell", bundle: nil)
+        damageTypeTable.register(addNib, forCellWithReuseIdentifier: "AddCell")
+        //damageTypeTable.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
         //setup modTable
         modTable.dataSource = self
         

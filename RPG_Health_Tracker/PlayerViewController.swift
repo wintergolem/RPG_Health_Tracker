@@ -10,6 +10,9 @@ import UIKit
 
 class PlayerViewController: UIViewController {
 
+    //MARK: - Properties
+    let player = CharacterManager.player
+    
     //MARK: - Outlets
     @IBOutlet weak var healthTrackTableView: UITableView!
     @IBOutlet weak var actionValueCollectionView: UICollectionView!
@@ -64,7 +67,7 @@ class PlayerViewController: UIViewController {
     {
         //build damageType Class
         let damageType = DamageType()
-        damageType.damageByte = CharacterManager.player.actionTypeByte
+        damageType.damageByte = CharacterManager.player.currentResistanceByte()
         damageType.damageTypeForDisplay.append("Not implemented yet")
         
         let attackType : d20AttackType = CharacterManager.player.currentAttackType
@@ -78,7 +81,7 @@ class PlayerViewController: UIViewController {
     func checkUiStatus()
     {
         undoButton.isEnabled = CharacterManager.player.actionList.count != 0
-        maxHealButton.isEnabled = CharacterManager.player.atMaxHealth
+        maxHealButton.isEnabled = !CharacterManager.player.atMaxHealth
     }
     
     //MARK: - Actions
@@ -89,6 +92,7 @@ class PlayerViewController: UIViewController {
     }
     @IBAction func maxHealButtonPress(_ sender: UIButton)
     {
+        CharacterManager.player.maxHeal()
         checkUiStatus()
     }
     @IBAction func damageOrHealSegConChanged(_ sender: UISegmentedControl)

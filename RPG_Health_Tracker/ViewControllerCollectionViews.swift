@@ -92,17 +92,23 @@ extension DamageModCreationViewController : UICollectionViewDataSource
         var value = 0
         if activeAttackType == .DR
         {
-            value = DamageTypeCatalogued.physical.count
+            value = DamageTypeCatalogued.physical.count + 1
         }
         else if activeAttackType == .RESIST
         {
-            value = DamageTypeCatalogued.energy.count
+            value = DamageTypeCatalogued.energy.count + 1
         }
+        activeNumberOfItems = value
         return value
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
+        if indexPath.row == activeNumberOfItems - 1
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddCell", for: indexPath)
+            return cell
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "actionCell", for: indexPath) as! ActionCollectionViewCell
         let text = DamageTypeCatalogued.getTextForValue(indexPath.row, activeAttackType)
         cell.activeSwitch.isOn = false

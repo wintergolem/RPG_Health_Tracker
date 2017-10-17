@@ -16,6 +16,8 @@ class DamageTypeView: UIView
  
     var actionTypeByte : UInt32 = UInt32(3)
     var activeAttackType : d20AttackType = .DR
+    var activeNumberOfItems : Int = 0
+    var cellSet : Bool = false
     
     func determineAttackType() -> d20AttackType
     {
@@ -28,6 +30,7 @@ class DamageTypeView: UIView
         case 2:
             return .NONE
         default:
+            print("DetermineAttackType() - DamageTypeView : invalid case \(attackTypeSegCon.selectedSegmentIndex)")
             return .DR
         }
         
@@ -50,20 +53,32 @@ extension DamageTypeView : UICollectionViewDataSource
         var value = 1
         switch activeAttackType {
         case .DR:
-            value += DamageTypeCatalogued.physical.count
+            value += DamageTypeCatalogued.physical.count + 1
         case .RESIST:
-            value += DamageTypeCatalogued.energy.count
+            value += DamageTypeCatalogued.energy.count + 1
         case .NONE:
             value += 0
         }
+        activeNumberOfItems = value
         return value
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        
+        if ( activeAttackType != .NONE && indexPath.row == activeNumberOfItems - 1)
+        {
+            if !cellSet
+            {
+                let nib = UINib(nibName: "AddCell", bundle: nil)
+                actionCollectionView.register(nib, forCellWithReuseIdentifier: "AddCell")
+                cellSet = true
+            }
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddCell", for: indexPath)
+            return cell
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "actionCell", for: indexPath) as! ActionCollectionViewCell
         fillCell(byRow: indexPath.row, cell: cell)
+        start here, setting switch default based on player current byte
         return cell
     }
     
