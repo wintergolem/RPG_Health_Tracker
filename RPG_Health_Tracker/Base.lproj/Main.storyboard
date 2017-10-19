@@ -53,7 +53,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="But-uG-tE1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="649" y="97"/>
+            <point key="canvasLocation" x="708" y="1060"/>
         </scene>
         <!--Player View Controller-->
         <scene sceneID="yIV-hT-hIv">
@@ -494,7 +494,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" tableViewCell="Pjc-mW-gpP" id="F08-Ny-AaH">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Character Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38g-uA-spJ">
@@ -577,11 +577,11 @@
             </objects>
             <point key="canvasLocation" x="-994" y="-641"/>
         </scene>
-        <!--Item-->
+        <!--Health Page-->
         <scene sceneID="rcR-tE-zKu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="12L-pH-oHU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="asC-bf-kwX"/>
+                    <tabBarItem key="tabBarItem" title="Health Page" id="asC-bf-kwX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1Pi-QU-9rH">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -596,11 +596,11 @@
             </objects>
             <point key="canvasLocation" x="-994" y="1060"/>
         </scene>
-        <!--Item-->
+        <!--Info-->
         <scene sceneID="EaI-Su-B5G">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jz3-db-PkD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="8tZ-zp-6vY"/>
+                    <tabBarItem key="tabBarItem" title="Info" id="8tZ-zp-6vY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lGU-ei-QYs">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

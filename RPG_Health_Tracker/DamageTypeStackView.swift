@@ -10,15 +10,15 @@ import UIKit
 
 class DamageTypeView: UIView
 {
-
+    //MARK: - Outlets
     @IBOutlet weak var actionCollectionView: UICollectionView!
     @IBOutlet weak var attackTypeSegCon: UISegmentedControl!
- 
+    //MARK: - Variables
     var actionTypeByte : UInt32 = UInt32(3)
     var activeAttackType : d20AttackType = .DR
     var activeNumberOfItems : Int = 0
     var cellSet : Bool = false
-    
+    //MARK: - Methods
     func determineAttackType() -> d20AttackType
     {
         switch attackTypeSegCon.selectedSegmentIndex
@@ -35,7 +35,7 @@ class DamageTypeView: UIView
         }
         
     }
-
+    //MARK: - Actions
     @IBAction func attackTypeChanged(_ sender: UISegmentedControl)
     {
         CharacterManager.player.currentAttackType = determineAttackType()
@@ -43,7 +43,7 @@ class DamageTypeView: UIView
         actionCollectionView.reloadData()
     }
 }
-
+//MARK: - Extensions
 extension DamageTypeView : UICollectionViewDataSource
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -78,7 +78,9 @@ extension DamageTypeView : UICollectionViewDataSource
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "actionCell", for: indexPath) as! ActionCollectionViewCell
         fillCell(byRow: indexPath.row, cell: cell)
-        start here, setting switch default based on player current byte
+        let value = 1 + indexPath.row
+        let mask : UInt32 = 1 << value
+        cell.activeSwitch.isOn = CharacterManager.player.currentResistanceByte() & mask == mask
         return cell
     }
     
@@ -105,7 +107,14 @@ extension DamageTypeView : UICollectionViewDataSource
 
 extension DamageTypeView : UICollectionViewDelegate
 {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        if indexPath.row == activeNumberOfItems - 1
+        {
+            print("AlertView!")
+            //start here: add UIAlertController class to handle adding new damage type
+        }
+    }
 }
 
 extension DamageTypeView : UICollectionViewDelegateFlowLayout

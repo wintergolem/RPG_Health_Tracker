@@ -16,19 +16,19 @@
             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lY3-it-W4b">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdt-QB-TQB">
                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <connections>
+                        <action selector="buttonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="rMN-1x-JWp"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="lY3-it-W4b" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="XKV-c7-m07"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="lY3-it-W4b" secondAttribute="bottom" id="eBm-u5-Z2y"/>
-                <constraint firstItem="lY3-it-W4b" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="g6A-tM-eBD"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lY3-it-W4b" secondAttribute="trailing" id="xq3-IN-4z0"/>
+                <constraint firstItem="hdt-QB-TQB" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Xgo-c6-KhI"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hdt-QB-TQB" secondAttribute="trailing" id="bJ8-4o-Z3d"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="hdt-QB-TQB" secondAttribute="bottom" id="cAy-a0-PFa"/>
+                <constraint firstItem="hdt-QB-TQB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="h3S-ve-J9X"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

@@ -33,10 +33,10 @@ class Player
     var resistanceList : AccessorArray = AccessorArray<HealthResistenced20>()
     var energyByte : UInt32 = UInt32(3)
     var physicalByte : UInt32 = UInt32(3)
-    var bypassByte : UInt32 = UInt32(0)
+    var bypassByte : UInt32 = UInt32(3)
     
     //Mark: - Other properties
-    var currentAttackType : d20AttackType = .NONE
+    var currentAttackType : d20AttackType = .DR
     var entity : CharacterEntity?
     
     
@@ -65,7 +65,7 @@ class Player
             resistTemp.attackTypeWorksAgainst = .RESIST
             resistTemp.displayName = "Fire Resist"
             resistTemp.op = .subtraction
-            resistTemp.typeByte = UInt32(4)
+            resistTemp.typeByte = UInt32(1)
             resistTemp.value = 5
             resistanceList.append(newValue: resistTemp)
             
@@ -74,7 +74,7 @@ class Player
             slashTemp.attackTypeWorksAgainst = .DR
             slashTemp.displayName = "Slashing DR"
             slashTemp.op = .subtraction
-            slashTemp.typeByte = UInt32(4)
+            slashTemp.typeByte = UInt32(1)
             slashTemp.value = 5
             resistanceList.append(newValue: slashTemp)
         }
@@ -148,6 +148,7 @@ class Player
     //MARK: - Damage
     func takeDamage( damage: Action20)
     {
+        let lethalBool = damage.damageType.popFirst()
         //run damage through mods
         for res in resistanceList.array
         {
@@ -159,7 +160,6 @@ class Player
         
         
         //check nonlethal
-        let lethalBool = damage.damageType.popFirst()
         if !lethalBool
         {
             doDamage(track: nonLethalTrack , damage: damage)
@@ -323,8 +323,10 @@ class Player
     {
         switch currentAttackType {
         case .DR:
+            //print("Physical Byte")
             return physicalByte
         case .RESIST:
+            //print("Energy Byte")
             return energyByte
         case .NONE:
             return bypassByte

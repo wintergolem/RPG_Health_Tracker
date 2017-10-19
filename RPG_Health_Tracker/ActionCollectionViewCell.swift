@@ -13,7 +13,7 @@ class ActionCollectionViewCell: UICollectionViewCell
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var activeSwitch: UISwitch!
     
-    //var switchChangeFunc : () -> () = {}
+    var switchChangeFunc : (() -> ())?
     var activeText : String = "active"
     var inactiveText : String = "inactive"
     var value : Int = -1
@@ -30,6 +30,13 @@ class ActionCollectionViewCell: UICollectionViewCell
         {
             titleLabel.text = inactiveText
         }
-        CharacterManager.player.applyTypeChange( typeChange: value + 1 )
+        if switchChangeFunc != nil
+        {
+            switchChangeFunc!()
+        }
+        else
+        {
+            CharacterManager.player.applyTypeChange( typeChange: value + 1 )
+        }
     }
 }

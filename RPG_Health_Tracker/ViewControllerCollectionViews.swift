@@ -116,6 +116,9 @@ extension DamageModCreationViewController : UICollectionViewDataSource
         cell.inactiveText = text
         cell.titleLabel.text = cell.activeSwitch.isOn ? cell.activeText : cell.inactiveText
         cell.value = indexPath.row
+        cell.switchChangeFunc = {
+            self.actionTypeByte = self.actionTypeByte ^ (1 << cell.value)
+        }
         return cell
     }
 }

@@ -8,6 +8,11 @@
 
 import UIKit
 
-class NewDamageTypeCell: UICollectionViewCell {
+class NewDamageTypeCell: UICollectionViewCell
+{
     
+    @IBAction func buttonPressed(_ sender: UIButton)
+    {
+        print("Button Pressed")
+    }
 }

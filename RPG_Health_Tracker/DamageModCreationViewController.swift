@@ -52,11 +52,12 @@ class DamageModCreationViewController: UIViewController
         default:
             activeAttackType = .NONE
         }
+        actionTypeByte = 0
         damageTypeTable.reloadData()
     }
     
     //MARK: - Properities
-    var actionTypeByte : UInt32 = UInt32()
+    var actionTypeByte : UInt32 = UInt32(0)
     var activeOperation : d20ResistanceOperations = d20ResistanceOperations.subtraction
     var activeAttackType : d20AttackType = .DR
     var activeNumberOfItems : Int = 0
@@ -84,7 +85,7 @@ class DamageModCreationViewController: UIViewController
         damageTypeTable.delegate = self
         let addNib = UINib(nibName: "AddCell", bundle: nil)
         damageTypeTable.register(addNib, forCellWithReuseIdentifier: "AddCell")
-        //damageTypeTable.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
+        //damageTypeTable.register(, forCellWithReuseIdentifier:
         //setup modTable
         modTable.dataSource = self
         

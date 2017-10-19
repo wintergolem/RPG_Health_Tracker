@@ -29,11 +29,13 @@ class HealthResistenced20
     func modifyDamage ( damage : Action20) -> Bool
     {
         //check if this mod works against this damage
-        if !enabled || attackTypeWorksAgainst != damage.attackType || checkBypass(input: damage.damageType.damageByte)
+        if !enabled || attackTypeWorksAgainst != damage.attackType || !checkBypass(input: damage.damageType.damageByte)
         {
             //this resistance doesn't work against this attack
             return false
         }
+        //debug - print that this resistance is active
+        //print("\(displayName) - resist used \(attackTypeWorksAgainst.rawValue) vs \(damage.attackType.rawValue)")
         //see damage needs applied to healthtrack
         if healthTrack != nil
         {
