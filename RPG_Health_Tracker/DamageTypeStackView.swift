@@ -18,6 +18,7 @@ class DamageTypeView: UIView
     var activeAttackType : d20AttackType = .DR
     var activeNumberOfItems : Int = 0
     var cellSet : Bool = false
+    var alert : DamageAddAlert?
     //MARK: - Methods
     func determineAttackType() -> d20AttackType
     {
@@ -112,7 +113,18 @@ extension DamageTypeView : UICollectionViewDelegate
         if indexPath.row == activeNumberOfItems - 1
         {
             print("AlertView!")
-            //start here: add UIAlertController class to handle adding new damage type
+            let title = "Adding new Damage Type"
+            var message = ""
+            if self.activeAttackType == .DR
+            {
+                message = "Add name for new physical damage type"
+            }
+            else
+            {
+                message = "Add name for new energy damage type"
+            }
+            alert = DamageAddAlert(title: title, message: message, type: activeAttackType)
+            UIApplication.shared.keyWindow?.rootViewController?.present((alert?.alert)! , animated: true, completion: actionCollectionView.reloadData)
         }
     }
 }

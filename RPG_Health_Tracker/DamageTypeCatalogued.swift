@@ -10,6 +10,7 @@ import Foundation
 
 class DamageTypeCatalogued
 {
+    //MARK: - Static
     static var physical : [String] = ["Slashing" , "Bludgeon" , "Piercing" , "Holy" , "UnHoly" , "Good" , "Evil"]
     
     static var energy : [String] = ["Fire" , "Cold" , "Electricity" , "Acid" , "Sonic"]
@@ -38,6 +39,20 @@ class DamageTypeCatalogued
             return value < energy.count ? energy[value] : "Error(Too High)"
         case .NONE:
             return ""
+        }
+    }
+    
+    static func add( newValue : String , _ type : d20AttackType)
+    {
+        if type == .DR
+        {
+            //TODO: add value to CoreData
+            DamageTypeCatalogued.physical.append(newValue)
+        }
+        else if type == .RESIST
+        {
+            //TODO: add value to CoreData
+            DamageTypeCatalogued.energy.append(newValue)
         }
     }
 }

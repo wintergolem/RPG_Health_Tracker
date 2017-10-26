@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		350443851F300B9A0010BB3B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350443841F300B9A0010BB3B /* Player.swift */; };
+		352276AC1FA162B4006C7D9E /* DamageAddAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352276AB1FA162B4006C7D9E /* DamageAddAlert.swift */; };
+		352276AE1FA16C9B006C7D9E /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352276AD1FA16C9B006C7D9E /* UIApplication.swift */; };
 		352ED0D31F314AC6009999FB /* ActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352ED0D21F314AC6009999FB /* ActionCollectionViewCell.swift */; };
 		352ED0D51F314D1C009999FB /* ViewControllerCollectionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352ED0D41F314D1C009999FB /* ViewControllerCollectionViews.swift */; };
 		35419A171F45275E00887538 /* CountingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35419A161F45275E00887538 /* CountingCell.xib */; };
@@ -52,6 +54,8 @@
 
 /* Begin PBXFileReference section */
 		350443841F300B9A0010BB3B /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		352276AB1FA162B4006C7D9E /* DamageAddAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageAddAlert.swift; sourceTree = "<group>"; };
+		352276AD1FA16C9B006C7D9E /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		352ED0D21F314AC6009999FB /* ActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCollectionViewCell.swift; sourceTree = "<group>"; };
 		352ED0D41F314D1C009999FB /* ViewControllerCollectionViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerCollectionViews.swift; sourceTree = "<group>"; };
 		35419A161F45275E00887538 /* CountingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountingCell.xib; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 				358128351F31367400CDB16D /* CharacterManager(debug).swift */,
 				354D0AE41F70AD8A00064DE4 /* DamageTypeCatalogued.swift */,
 				3591AEC51F7C837A0033913D /* CharacterBuilder.swift */,
+				352276AB1FA162B4006C7D9E /* DamageAddAlert.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 				352ED0D41F314D1C009999FB /* ViewControllerCollectionViews.swift */,
 				35DD16181F3BE481004B75E8 /* Primitives.swift */,
 				356C15B71F8859D8008FA70C /* Labels.swift */,
+				352276AD1FA16C9B006C7D9E /* UIApplication.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 				35DD16191F3BE481004B75E8 /* Primitives.swift in Sources */,
 				358128361F31367400CDB16D /* CharacterManager(debug).swift in Sources */,
 				356C15B61F8847FC008FA70C /* Schema.swift in Sources */,
+				352276AE1FA16C9B006C7D9E /* UIApplication.swift in Sources */,
 				3581833C1F268E7000D6EA72 /* ViewControllerTableView.swift in Sources */,
 				35B3B0031F0DB79E00C695C9 /* d20ConstantStrings.swift in Sources */,
 				358128301F30FCC000CDB16D /* DamageType.swift in Sources */,
@@ -388,6 +395,7 @@
 				354D0AE51F70AD8A00064DE4 /* DamageTypeCatalogued.swift in Sources */,
 				35B3B0061F0DB89D00C695C9 /* Actiond20.swift in Sources */,
 				3571C5891F6A12BF00DA81F4 /* CharacterSelectViewController.swift in Sources */,
+				352276AC1FA162B4006C7D9E /* DamageAddAlert.swift in Sources */,
 				356C15B41F8845FE008FA70C /* Schemes.swift in Sources */,
 				350443851F300B9A0010BB3B /* Player.swift in Sources */,
 				356C15B81F8859D8008FA70C /* Labels.swift in Sources */,
