@@ -35,6 +35,11 @@
 		3591AEC41F7C7EDC0033913D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3591AEC31F7C7EDC0033913D /* CoreDataManager.swift */; };
 		3591AEC61F7C837A0033913D /* CharacterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3591AEC51F7C837A0033913D /* CharacterBuilder.swift */; };
 		35A7E44C1F104C3F002D6582 /* d20Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A7E44B1F104C3F002D6582 /* d20Enums.swift */; };
+		35ABACDB1FA7FF14001C671E /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ABACDA1FA7FF14001C671E /* UIView.swift */; };
+		35ABACDD1FA80011001C671E /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ABACDC1FA80011001C671E /* HeaderView.swift */; };
+		35ABACDF1FA8006D001C671E /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35ABACDE1FA8006D001C671E /* HeaderView.xib */; };
+		35ABACE11FA80690001C671E /* InfoTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ABACE01FA80690001C671E /* InfoTabViewController.swift */; };
+		35ABACE31FA80861001C671E /* CollapseTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ABACE21FA80861001C671E /* CollapseTableView.swift */; };
 		35B202801F1D945900EE02C4 /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2027F1F1D945900EE02C4 /* CreationViewController.swift */; };
 		35B3AFE31F0DB46600C695C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B3AFE21F0DB46600C695C9 /* AppDelegate.swift */; };
 		35B3AFE81F0DB46600C695C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35B3AFE61F0DB46600C695C9 /* Main.storyboard */; };
@@ -81,6 +86,11 @@
 		3591AEC31F7C7EDC0033913D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3591AEC51F7C837A0033913D /* CharacterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterBuilder.swift; sourceTree = "<group>"; };
 		35A7E44B1F104C3F002D6582 /* d20Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = d20Enums.swift; sourceTree = "<group>"; };
+		35ABACDA1FA7FF14001C671E /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		35ABACDC1FA80011001C671E /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		35ABACDE1FA8006D001C671E /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		35ABACE01FA80690001C671E /* InfoTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTabViewController.swift; sourceTree = "<group>"; };
+		35ABACE21FA80861001C671E /* CollapseTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapseTableView.swift; sourceTree = "<group>"; };
 		35B2027F1F1D945900EE02C4 /* CreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreationViewController.swift; sourceTree = "<group>"; };
 		35B3AFDF1F0DB46600C695C9 /* RPG_Health_Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPG_Health_Tracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B3AFE21F0DB46600C695C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				354D0AE21F70910C00064DE4 /* DamageTypeStackView.swift */,
+				35ABACE21FA80861001C671E /* CollapseTableView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -122,6 +133,7 @@
 		3555C51F1F47C30100C3E304 /* Nibs */ = {
 			isa = PBXGroup;
 			children = (
+				35ABACDE1FA8006D001C671E /* HeaderView.xib */,
 				35419A161F45275E00887538 /* CountingCell.xib */,
 				3555C51D1F47C2FC00C3E304 /* ActionCell.xib */,
 				35FDF8A81F83084C00BC50E7 /* AddCell.xib */,
@@ -150,13 +162,14 @@
 			isa = PBXGroup;
 			children = (
 				3555C51F1F47C30100C3E304 /* Nibs */,
-				3581833D1F26950600D6EA72 /* ResistanceTableViewCell.swift */,
 				352ED0D21F314AC6009999FB /* ActionCollectionViewCell.swift */,
-				358AE11F1F355E9200F96FBC /* DamageModCell.swift */,
-				35419A181F4528B000887538 /* CountingCell.swift */,
 				3571C5861F6A0F9D00DA81F4 /* CharacterSelectCell.swift */,
+				35419A181F4528B000887538 /* CountingCell.swift */,
+				358AE11F1F355E9200F96FBC /* DamageModCell.swift */,
+				35ABACDC1FA80011001C671E /* HeaderView.swift */,
 				358128311F31345400CDB16D /* HealthTrackTableCell.swift */,
 				35D0D9E51F959D7F00954540 /* NewDamageTypeCell.swift */,
+				3581833D1F26950600D6EA72 /* ResistanceTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -169,6 +182,7 @@
 				358128331F31362F00CDB16D /* PlayerViewController.swift */,
 				358AE11D1F3558C000F96FBC /* DamageModCreationViewController.swift */,
 				3571C5881F6A12BF00DA81F4 /* CharacterSelectViewController.swift */,
+				35ABACE01FA80690001C671E /* InfoTabViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -286,6 +300,7 @@
 				35DD16181F3BE481004B75E8 /* Primitives.swift */,
 				356C15B71F8859D8008FA70C /* Labels.swift */,
 				352276AD1FA16C9B006C7D9E /* UIApplication.swift */,
+				35ABACDA1FA7FF14001C671E /* UIView.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -357,6 +372,7 @@
 				35419A171F45275E00887538 /* CountingCell.xib in Resources */,
 				35B3AFE81F0DB46600C695C9 /* Main.storyboard in Resources */,
 				3555C51E1F47C2FC00C3E304 /* ActionCell.xib in Resources */,
+				35ABACDF1FA8006D001C671E /* HeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +400,7 @@
 				35DD16191F3BE481004B75E8 /* Primitives.swift in Sources */,
 				358128361F31367400CDB16D /* CharacterManager(debug).swift in Sources */,
 				356C15B61F8847FC008FA70C /* Schema.swift in Sources */,
+				35ABACE31FA80861001C671E /* CollapseTableView.swift in Sources */,
 				352276AE1FA16C9B006C7D9E /* UIApplication.swift in Sources */,
 				3581833C1F268E7000D6EA72 /* ViewControllerTableView.swift in Sources */,
 				35B3B0031F0DB79E00C695C9 /* d20ConstantStrings.swift in Sources */,
@@ -391,7 +408,9 @@
 				358AE1201F355E9200F96FBC /* DamageModCell.swift in Sources */,
 				3591AEC41F7C7EDC0033913D /* CoreDataManager.swift in Sources */,
 				35A7E44C1F104C3F002D6582 /* d20Enums.swift in Sources */,
+				35ABACE11FA80690001C671E /* InfoTabViewController.swift in Sources */,
 				352ED0D31F314AC6009999FB /* ActionCollectionViewCell.swift in Sources */,
+				35ABACDD1FA80011001C671E /* HeaderView.swift in Sources */,
 				354D0AE51F70AD8A00064DE4 /* DamageTypeCatalogued.swift in Sources */,
 				35B3B0061F0DB89D00C695C9 /* Actiond20.swift in Sources */,
 				3571C5891F6A12BF00DA81F4 /* CharacterSelectViewController.swift in Sources */,
@@ -399,6 +418,7 @@
 				356C15B41F8845FE008FA70C /* Schemes.swift in Sources */,
 				350443851F300B9A0010BB3B /* Player.swift in Sources */,
 				356C15B81F8859D8008FA70C /* Labels.swift in Sources */,
+				35ABACDB1FA7FF14001C671E /* UIView.swift in Sources */,
 				35F5A1DA1F266ED8006898BB /* ViewControllerPickerViews.swift in Sources */,
 				352ED0D51F314D1C009999FB /* ViewControllerCollectionViews.swift in Sources */,
 				358AE11E1F3558C000F96FBC /* DamageModCreationViewController.swift in Sources */,
