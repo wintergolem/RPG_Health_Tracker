@@ -11,21 +11,28 @@ import UIKit
 class CollapseTableViewController: UITableViewController
 {
     var sectionCollapseArray : [Bool]!
-    var sectionCellCount : [Int]!
+    var sectionHeaderArray : [HeaderView]!
+    var sectionRowCount : [Int]!
     
     //MARK: - Methods
     override func viewDidLoad()
     {
         super.viewDidLoad()
         tableView.register(HeaderView.nib, forHeaderFooterViewReuseIdentifier: HeaderView.identifier)
-        //open all the sections
+        //create arrays w/ open sections
         sectionCollapseArray = [Bool](repeating: false, count: tableView.numberOfSections)
-        sectionCellCount = [Int](repeating: 0, count: sectionCollapseArray.count)
-        for i in 0...sectionCollapseArray.count - 1
-        {
-            sectionCellCount[i] = tableView.numberOfRows(inSection: i)
+        sectionRowCount = [Int](repeating: 0 , count: tableView.numberOfSections)
+        for i in 0...tableView.numberOfSections - 1
+        {//fill array
+            sectionRowCount[i] = tableView.numberOfRows(inSection: i) - 1
         }
-        sectionCollapseArray = sectionCollapseArray.map { _ in true }
+        for i in 0...sectionCollapseArray.count - 1
+        {//set array to close all sections
+            sectionCollapseArray[i] = true
+        }
+        sectionCollapseArray[0] = false //open first section to avoid weird UI issues
+        sectionHeaderArray = [HeaderView](repeating: HeaderView(), count: tableView.numberOfSections)
+        
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
@@ -34,21 +41,58 @@ class CollapseTableViewController: UITableViewController
         {
             headerView.section = section
             headerView.delegate = self
+            sectionHeaderArray[section] = headerView
+            headerView.collaspeArrow?.rotate(sectionCollapseArray[section] ? 0 : .pi)
             return headerView
         }
         return UIView()
     }
 }
+
+extension CollapseTableViewController //MARK: - UITableViewDataSource
+{
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        if let array = sectionCollapseArray
+        {
+            return array[section] ? 0 : super.tableView(tableView, numberOfRowsInSection: section)
+        }
+        return 0
+         
+    }
+}
+
 extension CollapseTableViewController : HeaderViewDelegate
 {
     func toggleSection(header: HeaderView, section: Int)
     {
-        //turn off all headers
-        sectionCollapseArray = sectionCollapseArray.map { _ in true}
-        //open selected one
-        sectionCollapseArray[section] = false
-        //rotate arrow
-        header.setCollapsed(collapsed: sectionCollapseArray[section])
-        tableView.reloadData()
+        //don't change anything while animating nor if selected section is open
+        if HeaderView.animating || !sectionCollapseArray[section]
+        {
+            return
+        }
+        else
+        {
+            //close open path
+            let openSection = sectionCollapseArray.firstValue(mask: false)
+            var deletePaths : [IndexPath] = [IndexPath]()
+            for i in 0...sectionRowCount[openSection]
+            {
+                deletePaths.append(IndexPath(item: i, section: openSection))
+            }
+            sectionCollapseArray[openSection] = true
+            //open new section
+            var openPaths : [IndexPath] = [IndexPath]()
+            for i in 0...sectionRowCount[section]
+            {
+                openPaths.append(IndexPath(item: i, section: section))
+            }
+            sectionCollapseArray[section] = false
+            //animate change
+            tableView.beginUpdates()
+            tableView.deleteRows(at: deletePaths, with: .fade)
+            tableView.insertRows(at: openPaths, with: .automatic)
+            tableView.endUpdates()
+        }
     }
 }

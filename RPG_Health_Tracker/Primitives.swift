@@ -61,3 +61,31 @@ extension Int
         return a < ceiling ? a : ceiling
     }
 }
+
+extension Array where Iterator.Element == Bool
+{
+    var allTrue: Bool
+    {
+        for i in 0...self.count - 1
+        {
+            if self[i] == false
+            {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func firstValue( mask: Bool) -> Int
+    {
+        for i in 0...count - 1
+        {
+            if self[i] == mask
+            {
+                return i
+            }
+        }
+        print("*************** ERROR ************** no \(mask) in current bool array")
+        return -1
+    }
+}

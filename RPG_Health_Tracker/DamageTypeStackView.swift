@@ -8,11 +8,11 @@
 
 import UIKit
 
-class DamageTypeView: UIView
+class DamageTypeView: NSObject
 {
     //MARK: - Outlets
-    @IBOutlet weak var actionCollectionView: UICollectionView!
-    @IBOutlet weak var attackTypeSegCon: UISegmentedControl!
+    var actionCollectionView: UICollectionView!
+    var attackTypeSegCon: UISegmentedControl!
     //MARK: - Variables
     var actionTypeByte : UInt32 = UInt32(3)
     var activeAttackType : d20AttackType = .DR
@@ -37,7 +37,7 @@ class DamageTypeView: UIView
         
     }
     //MARK: - Actions
-    @IBAction func attackTypeChanged(_ sender: UISegmentedControl)
+    func attackTypeChanged()
     {
         CharacterManager.player.currentAttackType = determineAttackType()
         activeAttackType = determineAttackType()

@@ -53,8 +53,9 @@ class AccessorArray<T>
     
     func popLast() -> T
     {
-        return array.popLast()!
+        let value = array.popLast()!
         callWatchers()
+        return value
     }
     //TODO: forEach
     func insert( newValue : T , index : Int)

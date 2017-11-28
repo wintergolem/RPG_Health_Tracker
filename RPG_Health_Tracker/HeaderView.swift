@@ -18,7 +18,7 @@ class HeaderView: UITableViewHeaderFooterView
     
     @IBOutlet weak var collaspeArrow: UILabel?
     var section : Int = 0
-    
+    static var animating : Bool = false
     weak var delegate: HeaderViewDelegate?
     
     override func awakeFromNib()
@@ -33,11 +33,24 @@ class HeaderView: UITableViewHeaderFooterView
         delegate?.toggleSection(header: self, section: section)
     }
     
-    func setCollapsed(collapsed: Bool)
+    func setCollapsed(collapsed: Bool , complete: ( (Bool) -> () )?)
     {
-        collaspeArrow?.rotate(collapsed ? 0.0 : .pi)
+        //collaspeArrow?.rotate(collapsed ? 0.0 : .pi)
+        
+        HeaderView.animating = true
+        UIView.animate(withDuration: 0.2, animations: {
+            self.collaspeArrow?.rotate(0.50)
+        }, completion: { (success) in
+            HeaderView.animating = false
+            if complete != nil { complete!(success) }
+        })
+        
     }
     
+    func doneAnimatingHandler(_ success : Bool)
+    {
+        HeaderView.animating = false
+    }
     //MARK: - Static Methods
     static var identifier: String
     {

@@ -19,6 +19,7 @@ extension UIView
         animation.isRemovedOnCompletion = false
         animation.fillMode = kCAFillModeForwards
         
-        self.layer.add(animation, forKey: nil)
+        self.layer.add(animation, forKey: nil )
+        
     }
 }
