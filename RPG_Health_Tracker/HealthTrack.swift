@@ -87,6 +87,10 @@ class HealthTrackd20
     }
     
     //MARK: - Healing
+    func healFull()
+    {
+        currentHealth.addWithCeiling( maxHealth , maxHealth)
+    }
     func healDamage( heal : Action20)
     {
         let healValue = heal.value

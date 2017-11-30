@@ -231,16 +231,16 @@
 		35B3AFF91F0DB4B100C695C9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				35B3AFFC1F0DB64E00C695C9 /* HealthTrack.swift */,
-				35B3AFFF1F0DB76300C695C9 /* HealthResistenced20.swift */,
 				35B3B0051F0DB89D00C695C9 /* Actiond20.swift */,
-				350443841F300B9A0010BB3B /* Player.swift */,
-				3581282F1F30FCC000CDB16D /* DamageType.swift */,
-				358128351F31367400CDB16D /* CharacterManager(debug).swift */,
-				354D0AE41F70AD8A00064DE4 /* DamageTypeCatalogued.swift */,
 				3591AEC51F7C837A0033913D /* CharacterBuilder.swift */,
+				358128351F31367400CDB16D /* CharacterManager(debug).swift */,
 				352276AB1FA162B4006C7D9E /* DamageAddAlert.swift */,
+				3581282F1F30FCC000CDB16D /* DamageType.swift */,
+				354D0AE41F70AD8A00064DE4 /* DamageTypeCatalogued.swift */,
 				35CE45EB1FBA73C800AC1BA4 /* DataSourceDelegate.swift */,
+				35B3AFFF1F0DB76300C695C9 /* HealthResistenced20.swift */,
+				35B3AFFC1F0DB64E00C695C9 /* HealthTrack.swift */,
+				350443841F300B9A0010BB3B /* Player.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";

@@ -13,8 +13,10 @@ class DamageModCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var enableSwitch: UISwitch!
+    @IBOutlet weak var resetButton: UIButton!
     
     var switchAction : ()->() = {}
+    var resetAction : ()->() = {}
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,5 +32,9 @@ class DamageModCell: UITableViewCell {
     @IBAction func switchChanged(_ sender: UISwitch)
     {
         switchAction()
+    }
+    @IBAction func resetButtonPressed(_ sender: UIButton)
+    {
+        resetAction()
     }
 }

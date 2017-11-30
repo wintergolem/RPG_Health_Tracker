@@ -48,7 +48,7 @@ class CharacterBuilder
                 let resist = HealthResistenced20()
                 resist.enabled = resistEnt.enabled
                 resist.displayName = resistEnt.displayName!
-                if resist.healthTrack != nil
+                if resistEnt.ownedTrack != nil
                 {
                     resist.healthTrack = char.separateHealthTracks[0]
                 }

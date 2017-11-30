@@ -35,7 +35,7 @@ class Player
     var physicalByte : UInt32 = UInt32(3)
     var bypassByte : UInt32 = UInt32(3)
     
-    //Mark: - Other properties
+    //MARK: - Other properties
     var currentAttackType : d20AttackType = .DR
     var entity : CharacterEntity?
     
@@ -126,6 +126,7 @@ class Player
     
     func save()
     {
+        print("Saving Started")
         _ = mainHealthTrack.toEntity()
         _ = nonLethalTrack.toEntity()
         for track in beforeHealthTracks.array
@@ -144,6 +145,7 @@ class Player
         {
             _ = res.toEntity()
         }
+        print("Saving Ended")
     }
     //MARK: - Damage
     func takeDamage( damage: Action20)
@@ -253,7 +255,7 @@ class Player
     
     func addHealthTrack( name : String , maxHealth : Int , currentHealth : Int = -1 , type : d20TrackType , destoryOnceEmpty : Bool = false) -> HealthTrackd20
     {
-        let track = HealthTrackd20(displayName: name, health: maxHealth, destroyOnceEmpty: destoryOnceEmpty, locationMark: 00)
+        let track = HealthTrackd20(displayName: name, health: maxHealth, destroyOnceEmpty: destoryOnceEmpty, locationMark: 30)
         if currentHealth != -1
         {
             track.currentHealth = currentHealth
@@ -282,6 +284,7 @@ class Player
         entity?.addToHealthTracks(track.toEntity())
         return track
     }
+    
     func moveTrack( sourceTrack : d20TrackType , sourceIndex : Int , destTrack : d20TrackType , destIndex : Int)
     {
         let sourceTrackArray = enumToTrack(value: sourceTrack)
@@ -290,6 +293,7 @@ class Player
         let destTrackArray : AccessorArray<HealthTrackd20> = enumToTrack(value: destTrack)
         destTrackArray.insert(newValue: track , index: destIndex)
     }
+    
     func enumToTrack( value : d20TrackType) -> AccessorArray<HealthTrackd20>
     {
         switch value {

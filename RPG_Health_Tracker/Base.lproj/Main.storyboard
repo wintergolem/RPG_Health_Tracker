@@ -6,11 +6,12 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Player View Controller-->
+        <!--Name-->
         <scene sceneID="yIV-hT-hIv">
             <objects>
                 <viewController id="pay-Xq-jzz" customClass="PlayerViewController" customModule="RPG_Health_Tracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -154,7 +155,7 @@
                             <constraint firstItem="GT8-lG-0f4" firstAttribute="trailing" secondItem="j6y-G8-dcc" secondAttribute="trailingMargin" id="kh8-Tf-os9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="VIf-3g-WZ5"/>
+                    <navigationItem key="navigationItem" title="Name" id="Mzn-Qa-mHA"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="DamageOrHealSegCon" destination="yXK-Ch-zyo" id="jZ1-29-HTb"/>
@@ -282,6 +283,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                                                    <connections>
+                                                        <action selector="ModNameFieldChanged:" destination="rTE-lm-wme" eventType="editingDidEnd" id="6E9-CW-cDO"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Value..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v1S-0J-0c1">
                                                     <rect key="frame" x="217" y="6" width="107" height="30"/>
@@ -289,6 +293,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <connections>
+                                                        <action selector="ModNameFieldChanged:" destination="rTE-lm-wme" eventType="editingDidEnd" id="u0x-LZ-sMJ"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -335,18 +342,36 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add HealthTrack?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2E-bf-d8q">
-                                                    <rect key="frame" x="22" y="8" width="109" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Track Value?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2E-bf-d8q">
+                                                    <rect key="frame" x="22" y="7" width="109" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="jDP-CU-ecp"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V49-Ft-fAq">
-                                                    <rect key="frame" x="222" y="8" width="49" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="V49-Ft-fAq">
+                                                    <rect key="frame" x="139" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="addTrackValueChanged:" destination="rTE-lm-wme" eventType="valueChanged" id="ugq-eC-R7o"/>
+                                                    </connections>
                                                 </switch>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="GCP-7B-SH6">
+                                                    <rect key="frame" x="188" y="10" width="171" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <segments>
+                                                        <segment title="Before"/>
+                                                        <segment title="Separate"/>
+                                                        <segment title="After"/>
+                                                    </segments>
+                                                </segmentedControl>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="U2E-bf-d8q" firstAttribute="centerY" secondItem="1rL-8Y-AOk" secondAttribute="centerY" id="YX0-pQ-1J4"/>
+                                                <constraint firstItem="V49-Ft-fAq" firstAttribute="centerY" secondItem="1rL-8Y-AOk" secondAttribute="centerY" id="jd5-E5-R4m"/>
+                                                <constraint firstItem="V49-Ft-fAq" firstAttribute="leading" secondItem="U2E-bf-d8q" secondAttribute="trailing" constant="10" id="t0k-kp-Msq"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="163" id="kXH-tL-IrV">
@@ -452,32 +477,60 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYw-Cc-ECI">
-                                                                        <rect key="frame" x="8" y="8" width="171" height="28"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYw-Cc-ECI">
+                                                                        <rect key="frame" x="10" y="12" width="125" height="20.5"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="PYw-Cc-ECI" secondAttribute="height" multiplier="171:28" id="Eih-vC-pju"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYW-7L-ltq">
-                                                                        <rect key="frame" x="187" y="8" width="42" height="28"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYW-7L-ltq">
+                                                                        <rect key="frame" x="155" y="8" width="42" height="28"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="aYW-7L-ltq" secondAttribute="height" multiplier="3:2" id="gWW-IY-Kqb"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WwZ-gy-04X">
-                                                                        <rect key="frame" x="278" y="8" width="51" height="31"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WwZ-gy-04X">
+                                                                        <rect key="frame" x="217" y="6.5" width="51" height="31"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="WwZ-gy-04X" secondAttribute="height" multiplier="49:31" id="pEF-fH-LhI"/>
+                                                                        </constraints>
                                                                         <connections>
                                                                             <action selector="switchChanged:" destination="xIT-gO-gm0" eventType="valueChanged" id="EnB-Hw-jPE"/>
                                                                         </connections>
                                                                     </switch>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccf-wI-LUZ">
+                                                                        <rect key="frame" x="286" y="-7" width="89" height="58"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="ccf-wI-LUZ" secondAttribute="height" multiplier="23:15" id="IwF-Rj-6DO"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="Reset"/>
+                                                                        <connections>
+                                                                            <action selector="resetButtonPressed:" destination="xIT-gO-gm0" eventType="touchUpInside" id="FwQ-cz-g81"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="WwZ-gy-04X" firstAttribute="leading" secondItem="aYW-7L-ltq" secondAttribute="trailing" constant="20" id="5JQ-NR-BJk"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="ccf-wI-LUZ" secondAttribute="trailing" id="JKL-fR-IN3"/>
+                                                                    <constraint firstItem="aYW-7L-ltq" firstAttribute="leading" secondItem="PYw-Cc-ECI" secondAttribute="trailing" constant="20" id="Jiq-WL-Txh"/>
+                                                                    <constraint firstItem="ccf-wI-LUZ" firstAttribute="centerY" secondItem="v6G-66-Mta" secondAttribute="centerY" id="OaF-Oh-Bio"/>
+                                                                    <constraint firstItem="WwZ-gy-04X" firstAttribute="centerY" secondItem="v6G-66-Mta" secondAttribute="centerY" id="URf-sb-Q6e"/>
+                                                                    <constraint firstItem="ccf-wI-LUZ" firstAttribute="leading" secondItem="WwZ-gy-04X" secondAttribute="trailing" constant="20" id="dMd-fx-cgO"/>
+                                                                    <constraint firstItem="PYw-Cc-ECI" firstAttribute="centerY" secondItem="v6G-66-Mta" secondAttribute="centerY" id="kVg-Ts-mpd"/>
+                                                                    <constraint firstItem="aYW-7L-ltq" firstAttribute="centerY" secondItem="v6G-66-Mta" secondAttribute="centerY" id="ucO-tz-8yj"/>
+                                                                    <constraint firstItem="PYw-Cc-ECI" firstAttribute="leading" secondItem="v6G-66-Mta" secondAttribute="leading" constant="10" id="wDs-5n-Hga"/>
+                                                                </constraints>
                                                             </tableViewCellContentView>
                                                             <connections>
                                                                 <outlet property="enableSwitch" destination="WwZ-gy-04X" id="mXe-s8-X98"/>
                                                                 <outlet property="nameLabel" destination="PYw-Cc-ECI" id="2e4-us-FWq"/>
+                                                                <outlet property="resetButton" destination="ccf-wI-LUZ" id="KBy-gA-R9g"/>
                                                                 <outlet property="valueLabel" destination="aYW-7L-ltq" id="PQz-P0-IpL"/>
                                                             </connections>
                                                         </tableViewCell>
@@ -507,6 +560,7 @@
                         <outlet property="activeDamageTypeSegCon" destination="sIx-xx-xcb" id="q9l-fR-QeS"/>
                         <outlet property="addModButton" destination="qrx-35-VHv" id="zJK-zD-OUR"/>
                         <outlet property="addedModTableView" destination="851-2v-O3K" id="46A-u6-bm1"/>
+                        <outlet property="damageModTrackType" destination="GCP-7B-SH6" id="RDx-cB-XUZ"/>
                         <outlet property="damageTypeCollectionView" destination="jxD-RE-dKF" id="GgP-5W-3Hl"/>
                         <outlet property="damageTypeSegCon" destination="49f-5K-wya" id="UnS-Z1-TMr"/>
                         <outlet property="healthTrackSwitch" destination="V49-Ft-fAq" id="ory-rZ-FMT"/>
@@ -517,9 +571,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J3d-QS-QeU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1111" y="246"/>
+            <point key="canvasLocation" x="1109.5999999999999" y="245.57721139430288"/>
         </scene>
-        <!--Character Select View Controller-->
+        <!--Characters-->
         <scene sceneID="Yfv-tH-d8I">
             <objects>
                 <viewController id="jim-H0-4Wc" customClass="CharacterSelectViewController" customModule="RPG_Health_Tracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -578,7 +632,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Aoj-LS-dCQ"/>
+                    <navigationItem key="navigationItem" title="Characters" id="q9X-zh-CB7"/>
                     <connections>
                         <outlet property="characterTable" destination="OSj-VH-R6V" id="MMw-Js-qU6"/>
                     </connections>
@@ -659,7 +713,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cHm-oM-0ZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1110" y="1059"/>
+            <point key="canvasLocation" x="1958" y="632"/>
         </scene>
     </scenes>
 </document>

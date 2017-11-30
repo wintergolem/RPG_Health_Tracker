@@ -24,6 +24,7 @@ class InfoTabViewController: CollapseTableViewController
     @IBOutlet weak var healthTrackSwitch: UISwitch!
     @IBOutlet weak var damageTypeCollectionView: UICollectionView!
     @IBOutlet weak var addModButton: UIButton!
+    @IBOutlet weak var damageModTrackType: UISegmentedControl!
     
     //added mods outlets
     @IBOutlet weak var addedModTableView: UITableView!
@@ -40,6 +41,7 @@ class InfoTabViewController: CollapseTableViewController
             temp.dataSource = self
             return temp
     }()
+    
     //MARK: - Actions
     @IBAction func addModButtonPressed(_ sender: UIButton)
     {
@@ -80,11 +82,22 @@ class InfoTabViewController: CollapseTableViewController
         
         
     }
+    @IBAction func ModNameFieldChanged(_ sender: UITextField)
+    {
+        addModButton.isEnabled = checkAddButtonValidity()
+    }
+    @IBAction func addTrackValueChanged(_ sender: UISwitch)
+    {
+        damageModTrackType.isEnabled = sender.isOn
+    }
     
     //MARK: - Methods
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        //disable mod add button
+        addModButton.isEnabled = checkAddButtonValidity()
+        //set damageTypeView variables
         damageTypeView.actionCollectionView = activeDamageTypeCollectionView
         damageTypeView.attackTypeSegCon = activeDamageTypeSegCon
         //assign datasources and delegates
@@ -120,6 +133,29 @@ class InfoTabViewController: CollapseTableViewController
         self.view.endEditing(true)
     }
     
+    func checkAddButtonValidity() -> Bool
+    {
+        if modName.text != "" && modValue.text != ""
+        {
+            return true
+        }
+        return false
+    }
+    func checkModTrackType() -> d20TrackType
+    {
+        switch damageModTrackType.selectedSegmentIndex
+        {
+        case 0:
+            return .BEFORE
+        case 1:
+            return .SEPARATE
+        case 2:
+            return .AFTER
+        default:
+            print("*******Default called: checkModTrackType() in InfoTabViewController")
+            return .SEPARATE
+        }
+    }
     //MARK: - UI Alert (health track)
     weak var actionToEnable : UIAlertAction?
     var valuePassed : Bool = false
@@ -131,7 +167,7 @@ class InfoTabViewController: CollapseTableViewController
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in })
         let saveButton = UIAlertAction(title: "Save", style: .default, handler:
         { (action: UIAlertAction!) in
-            newMod.healthTrack = CharacterManager.player.addHealthTrack(name: (alert.textFields?[0].text)!, maxHealth: Int((alert.textFields?[1].text)!)!, type: .SEPARATE)
+            newMod.healthTrack = CharacterManager.player.addHealthTrack(name: (alert.textFields?[0].text)!, maxHealth: Int((alert.textFields?[1].text)!)!, type: self.checkModTrackType() )
             CharacterManager.player.addResist(resist: newMod)
         })
         //configure textfields
@@ -173,7 +209,7 @@ class InfoTabViewController: CollapseTableViewController
         
     }
 }
-
+//extensions
 extension InfoTabViewController : UIPickerViewDataSource , UIPickerViewDelegate
 {
     func numberOfComponents(in pickerView: UIPickerView) -> Int

@@ -80,10 +80,23 @@ class DataSourceDelegate : NSObject, UITableViewDataSource ,UICollectionViewData
             }
             looped += 1
         }
+        let mod = CharacterManager.player.resistanceList[index]
         cell.nameLabel.text = CharacterManager.player.resistanceList[index].displayName
         cell.valueLabel.text = "\(CharacterManager.player.resistanceList[index].value)"
         cell.enableSwitch.isOn = CharacterManager.player.resistanceList[index].enabled
         cell.switchAction = { CharacterManager.player.resistanceList[index].enabled = cell.enableSwitch.isOn }
+        if mod.healthTrack != nil
+        {
+            cell.resetButton.isEnabled = true
+            cell.resetAction = {
+                CharacterManager.player.resistanceList[index].healthTrack?.healFull()
+                CharacterManager.player.separateHealthTracks.callWatchers()
+            }
+        }
+        else
+        {
+            cell.resetButton.isEnabled = false
+        }
         return cell
     }
     
@@ -110,7 +123,7 @@ class DataSourceDelegate : NSObject, UITableViewDataSource ,UICollectionViewData
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "actionCell", for: indexPath) as! ActionCollectionViewCell
-        print(activeAttackType)
+        //print(activeAttackType)
         let text = DamageTypeCatalogued.getTextForValue(indexPath.row, activeAttackType)
         cell.activeSwitch.isOn = false
         cell.activeText = text

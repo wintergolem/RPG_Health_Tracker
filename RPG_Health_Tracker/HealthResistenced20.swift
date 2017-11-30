@@ -34,20 +34,21 @@ class HealthResistenced20
             //this resistance doesn't work against this attack
             return false
         }
-        //debug - print that this resistance is active
-        //print("\(displayName) - resist used \(attackTypeWorksAgainst.rawValue) vs \(damage.attackType.rawValue)")
+        //calculate damage done
+        let newDamageValue =  Int.floor( selectOperation(damageValue: damage.value) )
+        let damageDone = damage.value - newDamageValue
         //see damage needs applied to healthtrack
         if healthTrack != nil
         {
-            let damageType = Action20(newValue: value < damage.value ? value : damage.value, counter: CharacterManager.player.grabActionNumber(), damageType: DamageType() )
+            let damageType = Action20(newValue: damageDone, counter: CharacterManager.player.grabActionNumber(), damageType: DamageType() )
             _ = healthTrack?.takeDamage(damage: damageType)
             damage.undoWatchers.append
                 {
-                    self.healthTrack?.undoAction(value: damageType.value, actionWasHeal: false)
+                    self.healthTrack?.undoAction(value: damageDone, actionWasHeal: false)
             }
         }
         //modify damage
-        damage.value = Int.floor( selectOperation(damageValue: damage.value) )
+        damage.value = newDamageValue
         damage.modificationTracker.append(modificationText)
         return true
     }
