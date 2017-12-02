@@ -28,15 +28,15 @@ class CharacterBuilder
                 switch track.locationMark
                 {
                 case 0:
-                    char.mainHealthTrack = buildTrack(entity: track)
+                    char.mainHealthTrack = HealthTrackd20(trackEntity: track)
                 case 1:
-                    char.nonLethalTrack = buildTrack(entity: track)
+                    char.nonLethalTrack = HealthTrackd20(trackEntity: track)
                 case 10:
-                    char.beforeHealthTracks.append(newValue: buildTrack(entity: track))
+                    char.beforeHealthTracks.append(newValue: HealthTrackd20(trackEntity: track))
                 case 20:
-                    char.afterHealthTracks.append(newValue: buildTrack(entity: track))
+                    char.afterHealthTracks.append(newValue: HealthTrackd20(trackEntity: track))
                 case 30:
-                    char.separateHealthTracks.append(newValue: buildTrack(entity: track))
+                    char.separateHealthTracks.append(newValue: HealthTrackd20(trackEntity: track))
                 default:
                     print("Error determining track - \(track.locationMark) is not a valid option")
                 }
@@ -45,18 +45,12 @@ class CharacterBuilder
             for resistEntUnSafe in character.resistances!
             {
                 let resistEnt = resistEntUnSafe as! ResistEntity
-                let resist = HealthResistenced20()
-                resist.enabled = resistEnt.enabled
-                resist.displayName = resistEnt.displayName!
+                let resist = HealthResistenced20(resistEntity: resistEnt)
                 if resistEnt.ownedTrack != nil
                 {
-                    resist.healthTrack = char.separateHealthTracks[0]
+                    let track = HealthTrackd20(trackEntity: resistEnt.ownedTrack!)
+                    resist.healthTrack = char.addHealthTrack(track: track, type: locationMarkToTrackType(track.locationMark), saveEntity: false)
                 }
-                resist.typeByte = UInt32(resistEnt.typeByte)
-                resist.value = Int(resistEnt.value)
-                resist.attackTypeWorksAgainst = d20AttackType(rawValue: resistEnt.attackType!)!
-                resist.op = d20ResistanceOperations(rawValue: resistEnt.operation!)!
-                
                 char.addResist(resist: resist)
             }
             char.entity = character
@@ -67,13 +61,19 @@ class CharacterBuilder
         return returnArray
     }
     
-    static func buildTrack( entity : HealthTrackEntity ) -> HealthTrackd20
+    fileprivate static func locationMarkToTrackType( _ locationMark : Int) -> d20TrackType
     {
-        let returnTrack = HealthTrackd20(
-            displayName: entity.displayName!,
-            health: Int(entity.maxHealth),
-            destroyOnceEmpty: entity.destoryIfDepleted , locationMark: Int(entity.locationMark))
-        returnTrack._currentHealth = Int(entity.currentHealth)
-        return returnTrack
+        switch locationMark
+        {
+        case 10:
+            return .BEFORE
+        case 20:
+            return .AFTER
+        case 30:
+            return .SEPARATE
+        default:
+            print("Error determining track - \(locationMark) is not a valid option")
+            return .SEPARATE
+        }
     }
 }

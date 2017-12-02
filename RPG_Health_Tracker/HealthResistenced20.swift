@@ -22,9 +22,18 @@ class HealthResistenced20
     {
         return "Performed operation: \(op) \(value)"
     }
-    var entity : ResistEntity = CoreDataManager.singleton.grabResistEntity()
+    var entity : ResistEntity!
     //MARK: - Methods
-    init() {}
+    init( resistEntity : ResistEntity)
+    {
+        entity = resistEntity
+        enabled = entity.enabled
+        displayName = entity.displayName!
+        typeByte = UInt32(entity.typeByte)
+        value = Int(entity.value)
+        attackTypeWorksAgainst = d20AttackType(rawValue: entity.attackType!)!
+        op = d20ResistanceOperations(rawValue: entity.operation!)!
+    }
     
     func modifyDamage ( damage : Action20) -> Bool
     {

@@ -45,12 +45,13 @@ class InfoTabViewController: CollapseTableViewController
     //MARK: - Actions
     @IBAction func addModButtonPressed(_ sender: UIButton)
     {
-        let newMod = HealthResistenced20()
-        newMod.typeByte = dataSourceDelegate.activeModTypeByte
-        newMod.displayName = modName.text!
-        newMod.op = activeModOperation
-        newMod.attackTypeWorksAgainst = damageTypeSegCon.selectedSegmentIndex == 0 ? .DR : .RESIST
-        newMod.value = Int(modValue.text!)!
+        let entity = CoreDataManager.singleton.grabResistEntity()
+        entity.typeByte = Int32(dataSourceDelegate.activeModTypeByte)
+        entity.displayName = modName.text!
+        entity.operation = activeModOperation.toString()
+        entity.attackType = damageTypeSegCon.selectedSegmentIndex == 0 ? d20AttackType.DR.rawValue : d20AttackType.RESIST.rawValue
+        entity.value = Int16(Int(modValue.text!)!)
+        let newMod = HealthResistenced20( resistEntity: entity )
         if healthTrackSwitch.isOn
         {
             addHealthTrackAlert(newMod: newMod)

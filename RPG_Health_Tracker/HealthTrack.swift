@@ -39,7 +39,7 @@ class HealthTrackd20
     var destoryIfDepleted : Bool
     var displayName : String
     var watchers : [()->()] = []
-    var entity : HealthTrackEntity = CoreDataManager.singleton.grabTrackEntity()
+    var entity : HealthTrackEntity!// = CoreDataManager.singleton.grabTrackEntity()
     var locationMark : Int = -1
     // tens digit: 0-mainline 1-before 2-after 3-separate
     // ones digit: (mainline only) 0-lethal 1-nonlethal
@@ -51,6 +51,17 @@ class HealthTrackd20
         maxHealth = health
         currentHealth = health
         self.locationMark = locationMark
+        entity = CoreDataManager.singleton.grabTrackEntity()
+    }
+    
+    init ( trackEntity: HealthTrackEntity )
+    {
+        entity = trackEntity
+        displayName = entity.displayName!
+        destoryIfDepleted = entity.destoryIfDepleted
+        maxHealth = Int(entity.maxHealth)
+        currentHealth = Int(entity.currentHealth)
+        locationMark = Int(entity.locationMark)
     }
     
     //MARK: - Damage
@@ -157,11 +168,11 @@ class HealthTrackd20
     
     func toEntity()-> HealthTrackEntity
     {
-        entity.currentHealth = Int16(_currentHealth)
-        entity.maxHealth = Int16(_maxHealth)
-        entity.displayName = displayName
-        entity.destoryIfDepleted = destoryIfDepleted
-        entity.locationMark = Int16(locationMark)
-        return entity
+        entity?.currentHealth = Int16(_currentHealth)
+        entity?.maxHealth = Int16(_maxHealth)
+        entity?.displayName = displayName
+        entity?.destoryIfDepleted = destoryIfDepleted
+        entity?.locationMark = Int16(locationMark)
+        return entity!
     }
 }

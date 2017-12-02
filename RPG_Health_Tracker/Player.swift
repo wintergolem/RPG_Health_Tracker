@@ -41,7 +41,7 @@ class Player
     
     
     //MARK: - Methods
-    init( displayName: String , maxHealth : Int , loading : Bool = false , _ testChar : Bool = false )
+    init( displayName: String , maxHealth : Int , loading : Bool = false )
     {
         self.displayName = displayName
         mainHealthTrack.maxHealth = maxHealth
@@ -52,33 +52,8 @@ class Player
         _ = resistanceList.addWatcher {
             self.reorderMods()
         }
-        if testChar
-        {
-            //add test extra healthtracks
-            _ = addHealthTrack(name: "AfterTest", maxHealth: 100, currentHealth: 100, type: .AFTER, destoryOnceEmpty: false )
-            _ = addHealthTrack(name: "BeforeTest", maxHealth: 100, type: .BEFORE, destoryOnceEmpty: false)
-            _ = addHealthTrack(name: "SeperateTest", maxHealth: 100, type: .SEPARATE )
-            
-            //add test resistances
-            //fire
-            let resistTemp : HealthResistenced20 = HealthResistenced20()
-            resistTemp.attackTypeWorksAgainst = .RESIST
-            resistTemp.displayName = "Fire Resist"
-            resistTemp.op = .subtraction
-            resistTemp.typeByte = UInt32(1)
-            resistTemp.value = 5
-            resistanceList.append(newValue: resistTemp)
-            
-            //slashing
-            let slashTemp : HealthResistenced20 = HealthResistenced20()
-            slashTemp.attackTypeWorksAgainst = .DR
-            slashTemp.displayName = "Slashing DR"
-            slashTemp.op = .subtraction
-            slashTemp.typeByte = UInt32(1)
-            slashTemp.value = 5
-            resistanceList.append(newValue: slashTemp)
-        }
-        else if loading == false
+        
+        if loading == false
         {
             entity = CoreDataManager.singleton.grabPlayerEntity()
             entity?.displayName = displayName
@@ -127,7 +102,7 @@ class Player
     func save()
     {
         print("Saving Started")
-        _ = mainHealthTrack.toEntity()
+        entity?.addToHealthTracks( mainHealthTrack.toEntity() )
         _ = nonLethalTrack.toEntity()
         for track in beforeHealthTracks.array
         {
@@ -261,6 +236,11 @@ class Player
             track.currentHealth = currentHealth
         }
         
+        return addHealthTrack(track: track, type: type)
+    }
+    
+    func addHealthTrack( track : HealthTrackd20 , type : d20TrackType, saveEntity : Bool = true) -> HealthTrackd20
+    {
         switch type {
         case .SEPARATE:
             track.locationMark = 30
@@ -281,7 +261,10 @@ class Player
             }
             beforeHealthTracks.append(newValue: track)
         }
-        entity?.addToHealthTracks(track.toEntity())
+        if saveEntity
+        {
+            entity?.addToHealthTracks(track.toEntity())
+        }
         return track
     }
     

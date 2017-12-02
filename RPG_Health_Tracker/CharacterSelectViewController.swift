@@ -20,7 +20,7 @@ class CharacterSelectViewController: UIViewController {
     {
         super.viewDidLoad()
 
-        characters.append(Player(displayName: "Test", maxHealth: 100, true))
+        //characters.append(Player(displayName: "Test", maxHealth: 100, true))
         
         characterTable.delegate = self
         characterTable.dataSource = self
